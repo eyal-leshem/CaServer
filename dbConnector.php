@@ -35,6 +35,62 @@ function dbAddNewAgent($agentName,$imps){
 }
 
 
+function getTasks($agentId)
+{
+	$database = "server";
+	//select the DB
+	@mysql_select_db($database) or die( "Unable to select database");
+	$agentId = mysql_real_escape_string($agentId);
+	$req = "SELECT * FROM tasks WHERE AgentId = '$agentId'";
+	$result = mysql_query($req);
+	
+	$tasksNum=mysql_numrows($result);
+	$tasksAr = array();
+	//get the messages (array of arrays)
+	for ($index = 0; $index < $tasksNum; $index++)
+	{
+		//array with values for current message
+		$msgData = array();
+		$msgData["taskId"] = mysql_result($result, $index,"taskId");
+		$msgData["dependOn"] = mysql_result($result, $index,"dependOn");
+		$msgData["kind"] = mysql_result($result, $index,"kind");
+		$msgData["implementorId"] = mysql_result($result, $index,"ImplementorId");
+		$msgData["commandDate"] = mysql_result($result, $index,"commandDate");
+		
+		//check - if we have a task that it's task depends on - check if this task was done
+		if($msgData["dependOn"] != 0)
+		{
+			//check if the task we depend on not done yet
+			if(checkTaskDone($msgData["dependOn"]) == false)
+			{
+				//if not done - skip to the next message
+				continue;
+			}
+		}
+		$tasksAr[$index] = $msgData;
+	}
+	return $tasksAr;
+}
+
+
+//checks if the taskId done
+function checkTaskDone($taskId)
+{
+	$database = "server";
+	//select the DB
+	@mysql_select_db($database) or die( "Unable to select database");
+	$req = "SELECT * FROM doneTasks WHERE taskId = '$taskId'";
+	$result = mysql_query($req);
+	//if the task with required id not been done yet - return false
+	if(mysql_numrows($result) == 0)
+	{
+		return false;
+	}
+	return true;
+	
+}
+
+
 
 
 
