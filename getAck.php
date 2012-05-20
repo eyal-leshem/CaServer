@@ -1,8 +1,5 @@
 <?php
-
-
-
-
+	include 'dbConnector.php';
 	function  saveData($taskId,$data){
 			$myFile = "tasksData/".$taskId;
 			$fh = fopen($myFile, 'w') or die("can't open file");
