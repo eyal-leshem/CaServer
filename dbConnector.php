@@ -90,6 +90,71 @@ function checkTaskDone($taskId)
 	
 }
 
+//Return value: the id of added task
+function addNewTask($taskId, $agentId, $dependsOn, $kind, $implementorId)
+{
+	$con=db_Open_conn();
+	mysql_select_db("server",$con);
+	//sanitizing the parameters we got
+	$name = mysql_real_escape_string($agentId);
+	$depends = mysql_real_escape_string($dependsOn);
+	$kind = mysql_real_escape_string($kind);
+	$password = mysql_real_escape_string($implementorId);
+	$date = date("Y-m-d H:i:s");
+	$str="INSERT INTO tasks VALUES ('".$taskId."','".$dependsOn."', '".$kind."', '".$agentId."', '".$implementorId."',NOW())";
+	mysql_query($str);
+	
+	//now get the id we got as auto incremented value
+	//$idReq = "SELECT * FROM tasks WHERE AgentId = '$agentId' AND dependOn = '$dependsOn' AND kind = '$kind' 
+				//AND ImplementorId = '$implementorId' AND commandDate = '$date'";
+	//$result = mysql_query($idReq);
+	
+	mysql_close($con);
+	//echo($result);
+	return $taskId;
+}
+
+function dbTaskDone($taskId,$agentId,$kind,$impId,$con){
+	mysql_select_db("server",$con);
+	
+	//avoid sql injection
+	$agentId = mysql_real_escape_string($agentId);
+	$taskId = mysql_real_escape_string($taskId);
+	
+	$commandDateQury="SELECT commandDate FROM tasks WHERE taskId=".$taskId; 
+	$ans=mysql_fetch_array(mysql_query($commandDateQury));
+	$commandDate=$ans[0]; 
+	
+	//add this to data base
+	$str="INSERT INTO doneTasks VALUES ('".$taskId."','".$kind."', '".$impId."','".$agentId."', '".$commandDate."',NOW())";
+	mysql_query($str);
+	//delte it form task 
+	$str="DELETE FROM tasks WHERE taskId=".$taskId;
+	mysql_query($str);
+	//add log message 
+	$str= "INSERT INTO serverlog VALUES (\"task".$taskId." done successfully\",NOW(),'".$agentId."','".$impId."',false)" ;  
+	mysql_query($str);
+}
+
+function dbGetDoneTaskKind($taskId,$con){
+	
+	mysql_select_db("server",$con);
+	
+	$taskId = mysql_real_escape_string($taskId);
+	
+	$str="SELECT kind FROM donetasks WHERE taskid=".$taskId;
+
+	$res=mysql_query($str);
+	
+	$ans=mysql_fetch_array($res);
+			
+	return $ans[0]; 
+	
+	
+	
+}
+
+
 
 
 
