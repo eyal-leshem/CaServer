@@ -20,6 +20,9 @@ $agents_string = "";
 
 $kv = array();
 
+echo("was here");
+echo("<BR><BR>");
+
 if ($_POST)
  {
 	//foreach ($_POST as $key => $value)
@@ -41,6 +44,7 @@ if ($_POST)
 	$task = $_POST['task'];
 	$implementorId = $_POST['implementorId'];
 	$taskId = $_POST['taskId'];
+	$alg= $_POST['alg'];
 	//now pass through all the parameters and create task in the table
 	foreach($kv as $key => $value)
 	{
@@ -50,13 +54,13 @@ if ($_POST)
 		}
 		else{		
 			//create a task for generating a key
-			addNewTask($taskId, $agentId, 0, $task, $implementorId);
+			addNewTask($taskId, $agentId, 0, $task, $implementorId,$alg);
 			$taskId = $taskId+1;
 			//create task for generating key with dependancy for updating task
 			if(strcmp($task,"generate secret")==0)
-				addNewTask($taskId, $value, $newId, "install secret", $implementorId);
+				addNewTask($taskId, $value, $newId, "install secret", $implementorId,$alg);
 			else 
-				addNewTask($taskId, $value, $newId, "install cert", $implementorId);
+				addNewTask($taskId, $value, $newId, "install cert", $implementorId,$alg);
 		}
 	}
 	
