@@ -2,6 +2,43 @@
 
 include 'dbConnector.php';
 
+//------------------------------------//
+//-------------functions-------------//
+//----------------------------------//
+
+
+//Return value: the id of added task
+function addNewTask($taskId, $agentId, $dependsOn, $kind, $implementorId,$alg)
+{
+	$con=db_Open_conn();
+	mysql_select_db("server",$con);
+	//sanitizing the parameters we got
+	$name = mysql_real_escape_string($agentId);
+	$depends = mysql_real_escape_string($dependsOn);
+	$kind = mysql_real_escape_string($kind);
+	$password = mysql_real_escape_string($implementorId);
+	$date = date("Y-m-d H:i:s");
+	$str="INSERT INTO tasks VALUES (".$taskId.",".$dependsOn.", '$alg','".$kind."', '".$agentId."', '".$implementorId."',NOW(),0)";
+	$ans=mysql_query($str);
+	echo $ans; 
+	
+	//now get the id we got as auto incremented value
+	//$idReq = "SELECT * FROM tasks WHERE AgentId = '$agentId' AND dependOn = '$dependsOn' AND kind = '$kind' 
+				//AND ImplementorId = '$implementorId' AND commandDate = '$date'";
+	//$result = mysql_query($idReq);
+	
+	mysql_close($con);
+	//echo($result);
+	return $taskId;
+}
+
+
+
+//------------------------------------//
+//--------------script---------------//
+//----------------------------------//
+
+
 /*POST messages format:
  
 "agentIdForShare" => Id
@@ -20,8 +57,6 @@ $agents_string = "";
 
 $kv = array();
 
-echo("was here");
-echo("<BR><BR>");
 
 if ($_POST)
  {

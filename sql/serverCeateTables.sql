@@ -39,7 +39,8 @@ CREATE TABLE 	doneTasks(taskId           	BIGINT,
 						  AgentId          	VARCHAR(20),
 						  ImplementorId    	VARCHAR(20),
 						  commandDate      	TIMESTAMP,
-						  submitionDate    	TIMESTAMP,								  
+						  submitionDate    	TIMESTAMP,	
+						  pullNum			INT	,						  
 						  PRIMARY KEY (taskId)
 
 );

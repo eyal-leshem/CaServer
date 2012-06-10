@@ -1,0 +1,7 @@
+{
+	"pullsNumBound":"3",
+	"dbAddress":"localhost:3306",
+	"dbUserName":"root", 
+	"dbName":"server" 
+	
+}
