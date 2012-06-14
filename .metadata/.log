@@ -1,0 +1,27 @@
+!SESSION 2012-05-25 11:33:10.646 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_04
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=iw_IL
+Framework arguments:  -showlocation
+Command-line arguments:  -os win32 -ws win32 -arch x86 -showlocation
+
+!ENTRY org.eclipse.ui 4 4 2012-05-25 11:33:39.709
+!MESSAGE Unable to find Action Set: org.eclipse.wst.server.ui.internal.webbrowser.actionSet
+
+!ENTRY org.eclipse.ui.workbench 2 0 2012-05-25 11:33:41.752
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2012-05-25 11:33:41.752
+!MESSAGE Conflict for 'org.eclipse.dltk.ui.edit.text.script.refactor.quickMenu':
+HandlerActivation(commandId=org.eclipse.dltk.ui.edit.text.script.refactor.quickMenu,
+	handler=org.eclipse.dltk.internal.ui.actions.refactoring.RefactorActionGroup$3@2f86a4,
+	expression=AndExpression(ActivePartExpression(org.eclipse.php.internal.ui.explorer.PHPExplorerPart@1069836),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1f0b26f)),sourcePriority=1064960)
+HandlerActivation(commandId=org.eclipse.dltk.ui.edit.text.script.refactor.quickMenu,
+	handler=org.eclipse.dltk.internal.ui.actions.refactoring.RefactorActionGroup$3@307c28,
+	expression=AndExpression(ActivePartExpression(org.eclipse.php.internal.ui.explorer.PHPExplorerPart@1069836),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1f0b26f)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui 4 4 2012-05-25 11:34:40.585
+!MESSAGE Invalid preference page path: HTML Syntax
+
+!ENTRY org.eclipse.ui 4 4 2012-05-25 11:34:40.585
+!MESSAGE Invalid preference page path: XML Syntax
