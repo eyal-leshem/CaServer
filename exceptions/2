@@ -38,3 +38,9 @@ Implemtor.ImplementorManager.commitTask(ImplementorManager.java:69)
 Manager.Manager.main(Manager.java:70)
 
 -------------------------------------------------
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't genrate certifcate factory with alogrithem :X.508
+Commands.InstallCertCommand.excute(InstallCertCommand.java:26)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:69)
+Manager.Manager.main(Manager.java:75)
