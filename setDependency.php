@@ -32,6 +32,18 @@ function addNewTask($taskId, $agentId, $dependsOn, $kind, $implementorId,$alg)
 	return $taskId;
 }
 
+function getTaskId(){
+
+	$query="SELECT MAX(taskId) From tasks"; 
+	$ans=mysql_query($str);
+	$res = mysql_fetch_array($ans); 
+	if(is_null($res[0]))
+		return 1; 
+	else
+		return  $res[0]+1; 
+	
+}
+
 
 
 //------------------------------------//
@@ -56,47 +68,60 @@ List with agentId-s for sharing:
 $agents_string = "";
 
 $kv = array();
+$imps=array(); 
 
 
 if ($_POST)
  {
 	//foreach ($_POST as $key => $value)
-	for($i = 0; $i < 4; $i++)
+	for($i = 1; $i <= 4; $i++)
 	{
 		//if it is more than one word (expected), return 
-		$value = $_POST[$i];
+		$agent = $_POST["$i"];
+		$imp   = $_POST["imp$i"]; 
 		if(strlen($value) > 0 && (strcmp($i, "submit") != 0))
 		{
 			$kv[$i] = $value;
+			$imps[$i]=$imp; 
 			echo($i);
 			echo(" \n");
 			echo($value);
+			echo(" \n");
+			echo($imp);
 			echo(" \n");
 		}
 	}
 	//the first value is agent id that it data has to be shared
 	$agentId = $_POST['agentIdForShare'];
 	$task = $_POST['task'];
-	$implementorId = $_POST['implementorId'];
-	$taskId = $_POST['taskId'];
+	$implementorId = $_POST['implementorId'];	
 	$alg= $_POST['alg'];
-	//now pass through all the parameters and create task in the table
+	
+	$taskId=getTaskId(); 
+	
+	//problem unknowen command 
+	if((strcmp($task,"generate key Pair")!=0)&&(strcmp($task,"generate secret")!=0)){
+		//TODO handle error
+	}
+	
+	//create a task for generating a key
+	addNewTask($taskId, $agentId, 0, $task, $implementorId,$alg);
+	
+	$dependOn = $taskId;
+	
+	//share all other agents; 
 	foreach($kv as $key => $value)
 	{
-		$newId = $taskId;
-		if((strcmp($task,"generate key Pair")!=0)&&(strcmp($task,"generate secret")!=0)){
-			//TODO handle error
-		}
-		else{		
-			//create a task for generating a key
-			addNewTask($taskId, $agentId, 0, $task, $implementorId,$alg);
-			$taskId = $taskId+1;
-			//create task for generating key with dependancy for updating task
-			if(strcmp($task,"generate secret")==0)
-				addNewTask($taskId, $value, $newId, "install secret", $implementorId,$alg);
-			else 
-				addNewTask($taskId, $value, $newId, "install cert", $implementorId,$alg);
-		}
+		$taskId = $taskId + 1; 
+				
+		$implementorId=$imps[$key]; 
+		$taskId = $taskId+1;
+		//create task for generating key with dependancy for updating task
+		if(strcmp($task,"generate secret")==0)
+			addNewTask($taskId, $value, $dependOn, "install secret",$implementorId ,$alg);
+		else 
+			addNewTask($taskId, $value, $dependOn, "install cert", $implementorId,$alg);
+		
 	}
 	
 	

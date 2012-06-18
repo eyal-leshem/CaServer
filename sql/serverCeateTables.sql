@@ -52,11 +52,12 @@ CREATE TABLE	failedTasks(
 						failureDate		TIMESTAMP
 );
 
-CREATE TABLE pullRequests(
-	taskId				BIGINT, 
-	implementorID		varchar(45), 
-	pullNum				INT
-);  
+CREATE TABLE	sessions(
+						userName		varchar(64), 
+						password		varchar(64),
+						contime			int, 
+						id				varchar(128) 
+); 
 
 "INSERT INTO agents  VALUES ('yosi',NOW(),NOW())";
 

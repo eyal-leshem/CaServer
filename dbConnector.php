@@ -41,6 +41,19 @@ function updateLastConn($agentName){
 	
 }
 
+function delTimeLimtSession(){
+
+	$timeLimit=loadConf("timeLimit");
+	$border=time()-$timeLimit;
+	$query="DELETE FROM sessions WHERE contime < $border"; 
+	mysql_query($query); 
+	
+	
+
+}
+
+
+
 
 
 
