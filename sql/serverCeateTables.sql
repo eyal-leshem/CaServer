@@ -1,7 +1,7 @@
 
-CREATE TABLE  	agents(	agentId 	VARCHAR(20),
-						regDate 	TIMESTAMP, 						 
-						lastConn	TIMESTAMP, 
+CREATE TABLE  	agents(	agentId 		VARCHAR(20),
+						lastconn		datetime, 
+						regDate 		datetime, 						 
 						PRIMARY KEY (agentId)
 ); 
 
@@ -16,13 +16,13 @@ CREATE TABLE   	tasks(	taskId			BIGINT,
 						kind			VARCHAR(20),
 						AgentId 		VARCHAR(20), 
 						ImplementorId	VARCHAR(20), 
-						commandDate 	TIMESTAMP , 
+						commandDate 	datetime , 
 						pullNum			INT	,	
 						PRIMARY KEY (taskId)
 );
 
 CREATE TABLE	serverlog(	event			VARCHAR(80), 
-							eventDate		TIMESTAMP, 
+							eventDate		datetime, 
 							agent			VARCHAR(20), 
 							implemntor		VARCHAR(20),
 							error			BOOLEAN
@@ -38,8 +38,8 @@ CREATE TABLE 	doneTasks(taskId           	BIGINT,
 						  kind            	VARCHAR(20),
 						  AgentId          	VARCHAR(20),
 						  ImplementorId    	VARCHAR(20),
-						  commandDate      	TIMESTAMP,
-						  submitionDate    	TIMESTAMP,	
+						  commandDate      	datetime,
+						  submitionDate    	datetime,	
 						  pullNum			INT	,						  
 						  PRIMARY KEY (taskId)
 
@@ -49,7 +49,7 @@ CREATE TABLE	failedTasks(
 						taskId			BIGINT(20), 
 						agentId			varchar(45), 
 						implementorId 	varchar(45), 
-						failureDate		TIMESTAMP
+						failureDate		datetime
 );
 
 CREATE TABLE	sessions(
@@ -59,7 +59,7 @@ CREATE TABLE	sessions(
 						id				varchar(128) 
 ); 
 
-"INSERT INTO agents  VALUES ('yosi',NOW(),NOW())";
+
 
 
 				

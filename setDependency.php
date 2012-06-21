@@ -34,9 +34,17 @@ function addNewTask($taskId, $agentId, $dependsOn, $kind, $implementorId,$alg)
 
 function getTaskId(){
 
-	$query="SELECT MAX(taskId) From tasks"; 
+	$query=" SELECT MAX(taskId) FROM
+						(SELECT taskId From tasks  UNION
+						 SELECT taskId From donetasks	UNION	
+						 SELECT taskId FROM failedtasks) AS x	"; 
 	$ans=mysql_query($str);
 	$res = mysql_fetch_array($ans); 
+	echo "<BR><BR><BR><BR><BR><BR>" ; 
+	echo $res[0]; 
+	echo $res[1];
+	echo "<BR><BR><BR><BR><BR><BR>" ;  
+	
 	if(is_null($res[0]))
 		return 1; 
 	else
@@ -99,6 +107,11 @@ if ($_POST)
 	
 	$taskId=getTaskId(); 
 	
+	echo "<BR><BR><BR><BR><BR><BR>" ; 
+	echo $taskId ;
+	echo $taskId;
+	echo "<BR><BR><BR><BR><BR><BR>" ;  
+	
 	//problem unknowen command 
 	if((strcmp($task,"generate key Pair")!=0)&&(strcmp($task,"generate secret")!=0)){
 		//TODO handle error
@@ -115,7 +128,7 @@ if ($_POST)
 		$taskId = $taskId + 1; 
 				
 		$implementorId=$imps[$key]; 
-		$taskId = $taskId+1;
+		
 		//create task for generating key with dependancy for updating task
 		if(strcmp($task,"generate secret")==0)
 			addNewTask($taskId, $value, $dependOn, "install secret",$implementorId ,$alg);
