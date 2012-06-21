@@ -30,12 +30,12 @@
 
 
 <html>
-	<link rel="stylesheet" type="text/css" href="index.css" />
+	
 	<body>
 			<div id="navContainer">
 				<div id="navigation">
-					<ul class="tab">
-						<li id="queueTasks" class="active"><a href="#">tasks in queue</a></li>
+					<ul class="nav nav-tabs">
+						<li id="queueTasks"> <a href="#">tasks in queue</a></li>
 						<li id="doneTasks"><a href="#">done tasks</a></li>
 						<li id="failedTasks"><a href="#">failed tasks</a></li>						
 					</ul>

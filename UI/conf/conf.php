@@ -19,12 +19,22 @@
 	
 ?>
 
-<script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript">
+
+	function sendForm(){
+		
+			formdata=$('#confForm').serialize();		
+			$('#confAns').load("conf/setConf.php",formdata);
+	}; 
+	
+
+
 	$(document).ready(function(){
-						$('#target').submit(function() {
-							$('#id').post("conf/setConf.php", )
-						});
+		$('[name=timeLimit]').val('<?php echo $timeLimit; ?>'); 	
+		$('[name=dbName]').val('<?php echo $dbName ; ?> ');
+		$('[name=dbUserName]').val('<?php echo $dbUserName ?>');
+		$('[name=dbAddress]').val('<?php echo $dbAddress; ?>');
+		$('[name=pullsNumBound]').val('<?php echo $pullsNumBound; ?>');
 	});
 </script> 
 
@@ -49,15 +59,16 @@
 		change server configuration:   <BR>
 	 </p>
 
-
- <form method="post">
-	time limit: <input type="text" name="timeLimit" /><br />
-	data Base Name: <input type="text" name="dbName" /><br />
-	data Base user Name: <input type="text" name="dbUserName" /><br />
-	data Base aderss: <input type="text" name="dbAddress" /><br />
-	pulls Num Bound: <input type="password" name="pullsNumBound" /> <br /> 
-	<input type="submit" value="Submit" />	
+<div class="span4">
+ <form id="confForm" class="well"  method="get" onSubmit="sendForm();return false;">
+	time limit: <input  type="text" name="timeLimit"  /><br />
+	data Base Name: <input    type="text" name="dbName" /><br />
+	data Base user Name: <input   type="text" name="dbUserName" /><br />
+	data Base aderss: <input  type="text" name="dbAddress" /><br />
+	pulls Num Bound: <input type="text" name="pullsNumBound" /> <br /> 
+	<input type="submit" value="submit" />	
 </form>
+</div>
+<div id="confAns"></div>
 
-<div id="ans"></div> 
  
