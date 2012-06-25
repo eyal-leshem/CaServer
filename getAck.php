@@ -4,6 +4,15 @@
 	//-------------------------------------//
 	//--------------functions-------------//
 	//-----------------------------------//
+	
+	function startsWith($haystack, $needle){
+		
+		$length = strlen($needle);
+		return (substr($haystack, 0, $length) === $needle);
+		
+	}
+
+	
 	function dbTaskDone($taskId,$agentId,$kind,$impId){
 		
 		
@@ -33,15 +42,24 @@
 
 	
 	
-    function saveData(){
+    function saveKeyData(){
     	echo "was in save data \n";
     	//get the properties for connecting to java class
 		require_once("http://localhost:8087/JavaBridge/java/Java.inc");
 		//connect to java 
 		$world = new java("CertificateDB");
 		$javaRet=$world->saveData(array($_POST["taskId"],$_POST["data"],$_POST["dataKind"],$_POST["dataAlg"]));	
+		$javaRet=(string)$javaRet;
+		return $javaRet; 
 				
     }
+	
+	function saveLowSecureData(){
+		$a=$_POST['data'];
+		$b=$_POST['agentId'];
+		$query="UPDATE agentsconf SET AgentConf='$a' WHERE agentId='$b'"; 
+		mysql_query($query);
+	}
 
 	/*
 	*write the exception ito file 
@@ -81,17 +99,33 @@
 		$taskId=$_POST["taskId"];
 		$agentId=$_POST["agentId"];
 		$kind=$_POST["dataKind"];
-		$impId=$_POST["impId"]; 			
+		$impId=$_POST["impId"]; 
+
+		$errorFlag=false; 
 		
 		//save the data (case we have a data)
-		if (isset($_POST["data"])) { 
-  			saveData();
+		if (isset($_POST["data"])) {
+			if(strcmp($impId,"nop")==0)
+				saveLowSecureData();
+			else
+				$javaAns=saveKeyData();
+				if(startsWith($javaAns,"error")){
+					$errorFlag=true;
+				}
 		}
 		 
 		 //update the database 
 		 
 		updateLastConn($agentId,$con);
-		dbTaskDone($taskId,$agentId,$kind,$impId); 		
+		if(!$errorFlag){
+			dbTaskDone($taskId,$agentId,$kind,$impId); 	
+		
+		}
+		else{
+			echo "was here1"; 
+			addToserverLog("poblem with java conntcetor while task $taskID",$agentId,$impId,true);
+			echo "was here2"; 
+		}		
 		
 	}
 

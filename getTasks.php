@@ -21,6 +21,17 @@ function startsWith($str, $startStr){
 *(that data where store in the javakeystroe of the server)
 */
 function getDependOnData($taskNum,$taskKind){
+		
+		echo $taskNum; 
+		$query="SELECT aData From lowSecureData WHERE taskId='$taskNum'";
+		$ans=mysql_query($query); 
+		$ans=mysql_fetch_array($ans); 
+		
+		if($ans){
+		
+			return $ans[0]; 
+		}
+
 		require_once("http://localhost:8087/JavaBridge/java/Java.inc");
 		$world = new java("CertificateDB");
 		$taskNumStr=(String)$taskNum; 
@@ -151,7 +162,7 @@ $agentId = $_POST["agentName"];
 updateLastConn($agentId);
 
 //get the value of bound of the pulls number of tasks from server.conf file (encoded as jason)
-$jsonData = json_decode(file_get_contents('server.conf'), true);
+$jsonData = json_decode(file_get_contents('conf.cnf'), true);
 $pullBound = $jsonData["pullsNumBound"];
 echo "pullBound", $pullBound;
 
@@ -171,6 +182,13 @@ foreach ($tasksAr as $task)
 		$task["data"]=$replay; 
 
 	}
+	
+	//case of data without depend on 
+	if(strcmp($task["kind"],"change conf") ==0){
+		$task["data"]=(String)getDependOnData($task["taskId"],""); 
+	}
+	
+	
 	//if we don't get error when we try to pull the data 
 	//add it to the array of task that will return to the client
 	if(!isset($replay)||!startsWith((String)$replay,"error:")){

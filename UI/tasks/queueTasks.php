@@ -16,7 +16,7 @@
 	?>
 	
 	
-	<table border="1" cellspacing="2" cellpadding="2">
+	<table  class="table table-striped">
 	<!--table head --> 
 	<tr>
 	<td><font face="Arial, Helvetica, sans-serif">taskId</font></td>

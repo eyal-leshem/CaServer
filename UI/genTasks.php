@@ -67,8 +67,33 @@ $(document).ready(function(){
 </script>
 
 
+<script>
+  /* attach a submit handler to the form */
+  $("#impfrom").submit(function(event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault(); 
+        
+    /* get some values from elements on the page: */
+    var $form = $( this ),
+        term = $form.find( 'input[name="s"]' ).val(),
+        url = $form.attr( 'action' );
+
+    /* Send the data using post and put the results in a div */
+    $.post( url, $(this).serialize(),
+      function( data ) {
+        //  var content = $( data ).find( '#content' );
+		  alert("task craeted");
+         // $( "#impres" ).empty().append( "<p>new task apeend in succsess</p>" );
+      }
+    );
+  });
+</script>
+
+
+
 <div class="span4">
- <form method="post" action="setDependency.php" class="well">
+ <form method="post" id="impfrom"  action="setDependency.php" class="well">
 		
 		<!-- agent fot commiting the task -->
 		Agent for Create key : <select  name= "agentIdForShare" id="agentSelect0">
@@ -152,6 +177,8 @@ $(document).ready(function(){
  
 </form> 
 </div>
+	<div id="impres">
+	<div>
 </div> 
 
 

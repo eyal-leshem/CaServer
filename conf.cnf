@@ -1,5 +1,5 @@
 {
-	"pullsNumBound":"3",
+	"pullsNumBound":"15",
 	"dbAddress":"localhost:3306",
 	"dbUserName":"root", 
 	"dbName":"server" ,

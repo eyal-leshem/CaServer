@@ -21,7 +21,7 @@ if (!chekSession()){
 								});
 								
 			$("#confPage").click(function(){
-									$("#content").load("conf/conf.php");
+									$("#content").load("conf/confBar.php");
 								});
 	});
 	</script>

@@ -21,7 +21,7 @@ CREATE TABLE   	tasks(	taskId			BIGINT,
 						PRIMARY KEY (taskId)
 );
 
-CREATE TABLE	serverlog(	event			VARCHAR(80), 
+CREATE TABLE	serverlog(	event			VARCHAR(150), 
 							eventDate		datetime, 
 							agent			VARCHAR(20), 
 							implemntor		VARCHAR(20),
@@ -58,6 +58,17 @@ CREATE TABLE	sessions(
 						contime			int, 
 						id				varchar(128) 
 ); 
+
+Create Table    AgentsConf(
+					agentId 		varchar(45),
+					agentConf		varchar(200) 
+); 
+
+Create Table	lowSecureData(
+				taskId 		varchar(45),
+				aData		varchar(400)
+);
+
 
 
 

@@ -46,6 +46,14 @@ function dbAddNewAgent($agentName,$imps){
 	 return true; 
 }
 
+//add the cofiguration of the agent
+function addNewConf($agentName,$conf){
+
+	$query="INSERT INTO agentsconf values('$agentName','$conf')";
+	mysql_query($query);
+  
+}
+
 //---------------------------------------///
 //----- script of install new agent----///
 //-------------------------------------///
@@ -71,7 +79,7 @@ if (dbChekInstallerPassword($_POST["instName"], $_POST["instPassword"], $con)) {
 		//evething work well  
 		else{
 			addToserverLog("new agent register",$_POST["name"],$_POST["name"],false);
-			//the answer
+			addNewConf($_POST["name"], $_POST["jsonConf"]); 
 			echo $certout;
 		}
 	} 
