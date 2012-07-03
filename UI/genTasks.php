@@ -63,7 +63,22 @@ $(document).ready(function(){
 									agentName=$("#agentSelect4").val();
 									$("#impSelect4").load("getImp.php?agentId="+agentName) ; 
 							});
+			
+			
+			$("#taskKind").change(function() {
+									kind=$("#taskKind").val();
+									if("remove certifcate"==kind  || "add to crl"==kind){
+										$("#restOfForm").hide(); 
+										$("#taskKindTextBox").html("serial number"); 
+									}
+									else{
+										$("#restOfForm").show(); 
+										$("#taskKindTextBox").html("yosp"); 
+									}
+							});
 			}); 
+			
+			
 </script>
 
 
@@ -107,14 +122,16 @@ $(document).ready(function(){
 		
 		<BR/>
 		task:
-		<select  name= "task" id="task">
+		<select  name= "task" id="taskKind">
 				<option value="generate secret">generate secret</option>	
-				<option value="generate key Pair">generate key Pair</option>	
+				<option value="generate key Pair">generate key Pair</option>
+				<option value="remove certifcate">remove certifcate</option>
+				<option value="add to crl">add to crl</option>				
 		</select> 
 		<BR/> 
-		algorithem:<input type = "text" name= "alg"/>
+		<P id="taskKindTextBox">algorithem:</P><input type = "text" name= "alg"/>
 		
-		
+		<div id="restOfForm">
 		<BR/> 
 		<BR/><BR/> 
 		implemtors for share :
@@ -167,7 +184,7 @@ $(document).ready(function(){
 		
 		<BR/>
 		<BR/> 
-		
+		</div>
 		<input type="submit" name="submit"/>
 		
 		

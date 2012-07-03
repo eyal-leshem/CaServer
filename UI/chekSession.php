@@ -5,7 +5,7 @@
 function chekSession(){
 
 	
-	//session_start();
+	session_start();
 	
 	$_SESSION["LAST_ACTIVITY"] = time();
 	
@@ -31,7 +31,7 @@ function chekSession(){
 	//get hashed username and password from session 
 	$sUser= $_SESSION["userName"]; 
 	$sPass= $_SESSION["password"];
-	
+	$sId=
 	
 	//for sql injection 
 	$sUser= mysql_real_escape_string($sUser); 
