@@ -29,6 +29,7 @@ function getOptions($ans){
 }
 
 
+
 ?>
 <div>
 
@@ -37,46 +38,74 @@ function getOptions($ans){
 $(document).ready(function(){
 			$("#agentSelect0").change(function() {
 									agentName=$("#agentSelect0").val();
-									$("#impSelect0").load("getImp.php?agentId="+agentName) ; 
+									$("#impSelect0").load("getImp.php?agentId="+agentName) ;
+					
 							});
 			 
 			
 			$("#agentSelect1").change(function() {
 									agentName=$("#agentSelect1").val();
-									$("#impSelect1").load("getImp.php?agentId="+agentName) ; 
+									//$("#impSelect1").load("getImp.php?agentId="+agentName) ; 
+									algName=$("#alg").val();
+									$("#impSelect1").load("checkAlgForShare.php?agentId="+agentName+"&algForShare="+algName) ;
 							});
 			
-			
+							
 			$("#agentSelect2").change(function() {
 									agentName=$("#agentSelect2").val();
-									$("#impSelect2").load("getImp.php?agentId="+agentName) ; 
+									//$("#impSelect2").load("getImp.php?agentId="+agentName) ; 
+									algName=$("#alg").val();
+									$("#impSelect2").load("checkAlgForShare.php?agentId="+agentName+"&algForShare="+algName) ;
 							});
 			 
 		
 			$("#agentSelect3").change(function() {
 									agentName=$("#agentSelect3").val();
-									$("#impSelect3").load("getImp.php?agentId="+agentName) ; 
+									//$("#impSelect3").load("getImp.php?agentId="+agentName) ; 
+									algName=$("#alg").val();
+									$("#impSelect3").load("checkAlgForShare.php?agentId="+agentName+"&algForShare="+algName) ;
 							});
 			 
 			
 			$("#agentSelect4").change(function() {
 									agentName=$("#agentSelect4").val();
-									$("#impSelect4").load("getImp.php?agentId="+agentName) ; 
+									
+									//$("#impSelect4").load("getImp.php?agentId="+agentName) ; 
+									algName=$("#alg").val();
+									$("#impSelect4").load("checkAlgForShare.php?agentId="+agentName+"&algForShare="+algName) ; 
 							});
 			
 			
 			$("#taskKind").change(function() {
 									kind=$("#taskKind").val();
+									$("#alg").hide();
+									//alert("imp selected"+agentName+" "+implementorId);
 									if("remove certifcate"==kind  || "add to crl"==kind){
 										$("#restOfForm").hide(); 
-										$("#taskKindTextBox").html("serial number"); 
+										$("#taskKindTextBox").html("serial number");
 									}
 									else{
-										$("#restOfForm").show(); 
-										$("#taskKindTextBox").html("yosp"); 
+										
+										$("#restOfForm").show();
+										//for loading the algorithm while choosing agent
+										if(kind == "generate secret")
+										{
+											$("#alg").show();
+											agentName=$("#agentSelect0").val();
+											//get the implementor name chosen
+											implementorId = $("#impSelect0").val();
+											
+											$("#alg").load("getAlg.php?agentId="+agentName+"&impId="+implementorId) ;
+										}
+										$("#taskKindTextBox").html("yosp");
+										
 									}
 							});
+							
+			
 			}); 
+			
+			
 			
 			
 </script>
@@ -117,24 +146,25 @@ $(document).ready(function(){
 		</select>
 		<BR>
 		<!-- the implmentor that need to cmmit the task commit this task -->
-		implemntor : <select  name= "implementorId" id="impSelect0">						
+		implementor : <select  name= "implementorId" id="impSelect0">						
 					</select> 	
 		
 		<BR/>
 		task:
 		<select  name= "task" id="taskKind">
-				<option value="generate secret">generate secret</option>	
 				<option value="generate key Pair">generate key Pair</option>
+				<option value="generate secret">generate secret</option>
 				<option value="remove certifcate">remove certifcate</option>
 				<option value="add to crl">add to crl</option>				
 		</select> 
-		<BR/> 
-		<P id="taskKindTextBox">algorithem:</P><input type = "text" name= "alg"/>
+		<BR/>
+		algorithm : <select  name= "algorithm" id="alg">						
+					</select>
 		
 		<div id="restOfForm">
 		<BR/> 
 		<BR/><BR/> 
-		implemtors for share :
+		implementors for share :
 		<BR/><BR/> 
 		agent1:<select  name= "1" id="agentSelect1">
 			<option value=""></option>
@@ -142,7 +172,7 @@ $(document).ready(function(){
 		</select>
 		<BR>
 		<!-- the implmentor that need to cmmit the task commit this task -->
-		implemntor : <select  name= "imp1" id="impSelect1">						
+		implementor : <select  name= "imp1" id="impSelect1">						
 					</select> 	
 		
 		<BR/>
@@ -154,7 +184,7 @@ $(document).ready(function(){
 		</select>
 		<BR>
 		<!-- the implmentor that need to cmmit the task commit this task -->
-		implemntor : <select  name= "imp2" id="impSelect2">						
+		implementor : <select  name= "imp2" id="impSelect2">						
 					</select> 	
 		
 		<BR/>
@@ -166,7 +196,7 @@ $(document).ready(function(){
 		</select>
 		<BR>
 		<!-- the implmentor that need to cmmit the task commit this task -->
-		implemntor : <select  name= "imp3" id="impSelect3">						
+		implementor : <select  name= "imp3" id="impSelect3">						
 					</select> 	
 		
 		<BR/>
@@ -179,7 +209,7 @@ $(document).ready(function(){
 		</select>
 		<BR>
 		<!-- the implmentor that need to cmmit the task commit this task -->
-		implemntor : <select  name= "imp4" id="impSelect4">						
+		implementor : <select  name= "imp4" id="impSelect4">						
 					</select> 	
 		
 		<BR/>
@@ -201,4 +231,5 @@ $(document).ready(function(){
 
 <?php
 db_close_conn($con);
+
 ?>

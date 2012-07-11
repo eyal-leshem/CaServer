@@ -11,6 +11,9 @@ if(!chekSession())
     /* stop form from submitting normally */
     event.preventDefault(); 
         
+	var $form = $( this ),
+         term = $form.find( 'input[name="s"]' ).val(),
+         url = $form.attr( 'action' );
 
     /* Send the data using post and put the results in a div */
     $.post( url, $(this).serialize(),
