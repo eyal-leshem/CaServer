@@ -23,6 +23,10 @@ if (!chekSession()){
 			$("#confPage").click(function(){
 									$("#content").load("conf/confBar.php");
 								});
+								
+			$("#addUser").click(function(){
+									$("#content").load("addUser.php");
+								});
 	});
 	</script>
 	
@@ -39,6 +43,7 @@ if (!chekSession()){
 						<li id="agentPage"><a href="#">agents data</a></li>
 						<li id="confPage"><a href="#">configuration</a></li>
 						<li id="log"><a href="#">server log</a></li>
+						<li id="addUser"><a href="#">add User</a><li>
 					</ul>
 				</div>
 			</div>

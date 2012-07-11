@@ -29,7 +29,7 @@ CREATE TABLE	serverlog(	event			VARCHAR(150),
 ); 
 
 CREATE TABLE	permission( username 	VARCHAR(20), 
-							password 	VARCHAR(20), 
+							password 	VARCHAR(80), 
 							PRIMARY KEY (userName)
 				
 );

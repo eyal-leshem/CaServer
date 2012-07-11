@@ -1,5 +1,9 @@
 <?php
 
+chdir(".."); 
+include "hashPass.php"; 
+chdir("UI");  
+
 /**
 *this function ask the if we have that usert name and password in our db - with this password 
 */
@@ -11,7 +15,7 @@ function dbChekInstallerPassword($name,$password){
 	$str="SELECT * FROM permission WHERE username='".$name."'";
 	$result=mysql_query($str);
 	$row=mysql_fetch_array($result);
-	if( isset($row) && isset($row["password"]) && strcmp($row["password"],$password)==0){
+	if( isset($row) && isset($row["password"]) && checkEqual($password,$row["password"])){
 		return true;
 	}
 	return false; 

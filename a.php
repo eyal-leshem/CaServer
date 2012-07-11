@@ -2,6 +2,7 @@
 
 include 'dbConnector.php';
 include 'MyKeyTool.php';
+include 'hashPass.php'; 
 
 /**
 *this function ask the if we have that usert name and password in our db - with this password 
@@ -13,7 +14,7 @@ function dbChekInstallerPassword($name,$password){
 	$str="SELECT * FROM permission WHERE username='".$name."'";
 	$result=mysql_query($str);
 	$row=mysql_fetch_array($result);
-	if(strcmp($row["password"],$password)==0){
+	if(checkEqual($password,$row["password"])){
 		return true;
 	}
 	return false; 
