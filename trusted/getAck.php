@@ -123,7 +123,7 @@
 		}
 		else{
 			echo "was here1"; 
-			addToserverLog("poblem with java conntcetor while task $taskID",$agentId,$impId,true);
+			addToserverLog("poblem with java conntcetor while task $taskId",$agentId,$impId,true);
 			echo "was here2"; 
 		}		
 		

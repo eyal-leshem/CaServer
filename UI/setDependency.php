@@ -94,7 +94,7 @@ if ($_POST)
 	$agentId = $_POST['agentIdForShare'];
 	$task = $_POST['task'];
 	$implementorId = $_POST['implementorId'];	
-	$alg= $_POST['alg'];
+	$alg= $_POST['algorithm'];
 	
 	$taskId=getTaskId(); 
 	

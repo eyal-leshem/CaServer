@@ -1,0 +1,6 @@
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't endoce the key on base 64
+Commands.GenrateSecertCommand.excute(GenrateSecertCommand.java:43)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:76)
