@@ -69,6 +69,14 @@ Create Table	lowSecureData(
 				aData		varchar(400)
 );
 
+create Table	algorithms(
+	agentId          varchar(20),
+
+	implementorId    varchar(45),
+
+	algorithm        varchar(45) 
+);
+
 
 
 

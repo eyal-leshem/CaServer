@@ -16,3 +16,15 @@ full stack trace: exceptions.AgentServiceException: can't get intance of plugin 
 Implemtor.ImplementorManager.<init>(ImplementorManager.java:47)
 Implemtor.ImplementorManager.getInstance(ImplementorManager.java:35)
 Manager.Manager.main(Manager.java:47)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't get intance of plugin manger
+Implemtor.ImplementorManager.<init>(ImplementorManager.java:48)
+Implemtor.ImplementorManager.getInstance(ImplementorManager.java:35)
+Manager.Manager.main(Manager.java:47)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't get intance of plugin manger
+Implemtor.ImplementorManager.<init>(ImplementorManager.java:48)
+Implemtor.ImplementorManager.getInstance(ImplementorManager.java:35)
+Manager.Manager.main(Manager.java:47)
