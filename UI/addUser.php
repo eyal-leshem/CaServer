@@ -4,9 +4,9 @@ if(!chekSession())
 	exit("permission denied");
 ?>
 
-<script>
+<script type="text/javascript">
   /* attach a submit handler to the form */
-  $("#impfrom").submit(function(event) {
+  $("#addUserform").submit(function(event) {
 
     /* stop form from submitting normally */
     event.preventDefault(); 
@@ -25,8 +25,10 @@ if(!chekSession())
   });
 </script>
 
-<form method="post" id="addUserform"  action="setNewUser.php" class="well">
-		userName: <input type="text" name="userName" /><br />
-		Password: <input type="password" name="password" /> <br /> 
-		<input type="submit" value="Submit" />				
-</form> 
+<div class="span4">
+	<form method="post" id="addUserform"  action="setNewUser.php" class="well">
+			userName: <input type="text" name="userName" /><br />
+			Password: <input type="password" name="password" /> <br /> 
+			<input type="submit" value="Submit" />				
+	</form>
+</div> 

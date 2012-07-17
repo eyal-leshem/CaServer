@@ -29,6 +29,14 @@ function addNewTask($taskId, $agentId, $dependsOn, $kind, $implementorId,$alg)
 	return $taskId;
 }
 
+function addLowSecureData($taskId,$data){
+		//$taskId = mysql_real_escape_string($taskId);
+		//$newConf=mysql_real_escape_string($newConf);
+		
+		$query="INSERT INTO  lowSecureData  VALUES('$taskId','$data')";
+		mysql_query($query);
+	}
+
 function getTaskId(){
 
 	$query=" SELECT MAX(taskId) FROM
@@ -68,6 +76,26 @@ List with agentId-s for sharing:
 */
 
 //get the id-s of the agents that we want to set them get the data
+$agentId = $_POST['agentIdForShare'];
+$task = $_POST['task'];
+$implementorId = $_POST['implementorId'];	
+
+
+if( ($task=="remove certifcate") || ($task=="add to crl") ){
+	
+	//get the taskid and the serial number
+	$ser=$_POST["serialNumber"];
+	$taskId=getTaskId();
+	
+	//add the serialNumber to the database
+	addLowSecureData($taskId,$ser);
+	addNewTask($taskId, $agentId, 0, $task, $implementorId,""); 
+	return; 
+	
+	
+}
+
+
 $agents_string = "";
 
 $kv = array();
@@ -91,13 +119,10 @@ if ($_POST)
 		}
 	}
 	//the first value is agent id that it data has to be shared
-	$agentId = $_POST['agentIdForShare'];
-	$task = $_POST['task'];
-	$implementorId = $_POST['implementorId'];	
-	$alg= $_POST['algorithm'];
+	
 	
 	$taskId=getTaskId(); 
-	
+	$alg= $_POST['algorithm'];
 	
 	
 	//problem unknowen command 

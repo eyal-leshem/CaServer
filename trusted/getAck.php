@@ -13,19 +13,20 @@
 	}
 
 	// inform the database about task that done 
-	function dbTaskDone($taskId,$agentId,$kind,$impId){
+	function dbTaskDone($taskId,$agentId,$kin,$impId){
 		
 		
 		//avoid sql injection
 		$agentId = mysql_real_escape_string($agentId);
 		$taskId = mysql_real_escape_string($taskId);
 		
-		$commandDateQury="SELECT commandDate,pullNum FROM tasks WHERE taskId=".$taskId; 
+		$commandDateQury="SELECT commandDate,pullNum,kind FROM tasks WHERE taskId=".$taskId; 
 		$ans=mysql_fetch_array(mysql_query($commandDateQury));
 		
 		
 		$commandDate=$ans[0]; 
 		$pullNum=$ans[1]; 
+		$kind=$ans[2]; 
 		
 		//add this to data base
 		$str="INSERT INTO doneTasks VALUES ('".$taskId."','".$kind."', '".$agentId."','".$impId."', '".$commandDate."',NOW(),$pullNum)";

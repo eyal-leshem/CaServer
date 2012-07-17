@@ -22,26 +22,16 @@ function dbChekInstallerPassword($name,$password){
 }
 
 
-function dbAddSession($hUser,$hPass,$id){
-	$time=time(); 
-	$query="INSERT INTO sessions VALUES('$hUser','$hPass',$time,'$id')";
-	
-	$ans= mysql_query($query);
-	
-	
-}
 
 function openSession($userName,$password){
+	
 	session_start();
-
-	$hashUserName=hash("sha256",$userName); 
-	$hashPassword=hash("sha256",$password);
 	
 	$_SESSION["LAST_ACTIVITY"] = time();
-	$_SESSION["userName"]=$hashUserName; 
-	$_SESSION["password"]=$hashPassword;
+	$_SESSION["userName"]=$userName; 
+
 	
-	dbAddSession($hashUserName,$hashPassword,session_id()); 	
+
 	
 }
 

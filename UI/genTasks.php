@@ -36,6 +36,8 @@ function getOptions($ans){
 <script type="text/javascript" src="jquery-1.7.2.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+			$("#alg").html("<option value=\"X.509\">X.509</option>");
+			$("#serialNumberForm").hide(); 
 			$("#agentSelect0").change(function() {
 									agentName=$("#agentSelect0").val();
 									$("#impSelect0").load("getImp.php?agentId="+agentName) ;
@@ -82,11 +84,17 @@ $(document).ready(function(){
 									//alert("imp selected"+agentName+" "+implementorId);
 									if("remove certifcate"==kind  || "add to crl"==kind){
 										$("#restOfForm").hide(); 
-										$("#taskKindTextBox").html("serial number");
+										$("#serialNumberForm").show();
 									}
 									else{
-										
+										$("#serialNumberForm").hide(); 
 										$("#restOfForm").show();
+										if("generate key Pair"==kind){
+											$("#alg").show(); 
+											$("#alg").html("<option value=\"X.509\">X.509</option>");
+											$("#serialNumberForm").hide(); 
+										}
+											
 										//for loading the algorithm while choosing agent
 										if(kind == "generate secret")
 										{
@@ -96,8 +104,9 @@ $(document).ready(function(){
 											implementorId = $("#impSelect0").val();
 											
 											$("#alg").load("getAlg.php?agentId="+agentName+"&impId="+implementorId) ;
+											$("#serialNumberForm").hide(); 
 										}
-										$("#taskKindTextBox").html("yosp");
+										
 										
 									}
 							});
@@ -158,63 +167,73 @@ $(document).ready(function(){
 				<option value="add to crl">add to crl</option>				
 		</select> 
 		<BR/>
+		
+		<!-- the implmentor that need to share the key -->
+		<div id="restOfForm">
 		algorithm : <select  name= "algorithm" id="alg">						
 					</select>
 		
-		<div id="restOfForm">
-		<BR/> 
-		<BR/><BR/> 
-		implementors for share :
-		<BR/><BR/> 
-		agent1:<select  name= "1" id="agentSelect1">
-			<option value=""></option>
-			<?php getAgentsOpt() ?>
-		</select>
-		<BR>
-		<!-- the implmentor that need to cmmit the task commit this task -->
-		implementor : <select  name= "imp1" id="impSelect1">						
-					</select> 	
 		
-		<BR/>
-		<BR/> 
+			<BR/> 
+			<BR/><BR/> 
+			implementors for share :
+			<BR/><BR/> 
+			agent1:<select  name= "1" id="agentSelect1">
+				<option value=""></option>
+				<?php getAgentsOpt() ?>
+			</select>
+			<BR>
+			
 		
-		agent2:<select  name= "2" id="agentSelect2">
-			<option value=""></option>
-			<?php getAgentsOpt() ?>
-		</select>
-		<BR>
-		<!-- the implmentor that need to cmmit the task commit this task -->
-		implementor : <select  name= "imp2" id="impSelect2">						
-					</select> 	
-		
-		<BR/>
-		<BR/> 
-		
-		agent3:<select  name= "3" id="agentSelect3">
-			<option value=""></option>
-			<?php getAgentsOpt() ?>
-		</select>
-		<BR>
-		<!-- the implmentor that need to cmmit the task commit this task -->
-		implementor : <select  name= "imp3" id="impSelect3">						
-					</select> 	
-		
-		<BR/>
-		<BR/> 
-		
-		
-		agent4:<select  name= "4" id="agentSelect4">
-			<option value=""></option>
-			<?php getAgentsOpt() ?>
-		</select>
-		<BR>
-		<!-- the implmentor that need to cmmit the task commit this task -->
-		implementor : <select  name= "imp4" id="impSelect4">						
-					</select> 	
-		
-		<BR/>
+			implementor : <select  name= "imp1" id="impSelect1">						
+						</select> 	
+			
+			<BR/>
+			<BR/> 
+			
+			agent2:<select  name= "2" id="agentSelect2">
+				<option value=""></option>
+				<?php getAgentsOpt() ?>
+			</select>
+			<BR>
+			<!-- the implmentor that need to cmmit the task commit this task -->
+			implementor : <select  name= "imp2" id="impSelect2">						
+						</select> 	
+			
+			<BR/>
+			<BR/> 
+			
+			agent3:<select  name= "3" id="agentSelect3">
+				<option value=""></option>
+				<?php getAgentsOpt() ?>
+			</select>
+			<BR>
+			<!-- the implmentor that need to cmmit the task commit this task -->
+			implementor : <select  name= "imp3" id="impSelect3">						
+						</select> 	
+			
+			<BR/>
+			<BR/> 
+			
+			
+			agent4:<select  name= "4" id="agentSelect4">
+				<option value=""></option>
+				<?php getAgentsOpt() ?>
+			</select>
+			<BR>
+			<!-- the implmentor that need to cmmit the task commit this task -->
+			implementor : <select  name= "imp4" id="impSelect4">						
+						</select> 	
+			
+			<BR/>
 		<BR/> 
 		</div>
+		
+		<div id="serialNumberForm">
+			serial number : <input type="text" name="serialNumber" />
+		
+		</div>
+		<!-- end of rest of form -->
 		<input type="submit" name="submit"/>
 		
 		

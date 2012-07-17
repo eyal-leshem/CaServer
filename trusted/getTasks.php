@@ -15,6 +15,8 @@ function startsWith($str, $startStr){
     	return (substr($str, 0, $length) == $startStr);
 }
 
+
+
 /**
 *call to java function (while use java-php brige),
 *that return te relvant data  from this task 
@@ -33,7 +35,7 @@ function getDependOnData($taskNum,$taskKind){
 		}
 
 		//conecetion to the java program of certificatedb 
-		if(!@include_once("http://localhost:8087/JavaBridge/java/Java.inc")){
+		if(@include_once("http://localhost:8087/JavaBridge/java/Java.inc")){
 			$world = new java("CertificateDB");
 			$taskNumStr=(String)$taskNum; 
 			return $world->getData(array($taskNumStr,$taskKind));
@@ -179,6 +181,7 @@ $index=0;
 //$newtaskArr=array(); 
 foreach ($tasksAr as $task)
 {
+	$replay="OK"; 
 	//if depend on isn't 0 it's says that we Depends upon another task 
 	//and need to get here data 
 	if($task["dependOn"]!=0)
@@ -188,6 +191,9 @@ foreach ($tasksAr as $task)
 		$taskNum=$task["taskId"]; 
 		$dataKind=dbGetDoneTaskKind($task["dependOn"]);
 		$replay=(String)getDependOnData($task["dependOn"],$dataKind);
+		
+		echo $task['implementorId']."\n"; 
+		echo $taskNum."\n"; 
 	
 		//error in including the configuration file for the java connector 
 		if(strcmp($replay,"fail")!=0){
@@ -198,7 +204,7 @@ foreach ($tasksAr as $task)
 	}
 	
 	//the only case of data without depend on 
-	if(strcmp($task["kind"],"change conf") ==0){
+	if(strcmp($task["kind"],"change conf") ==0  || ($task["kind"]=="remove certifcate") || ($task["kind"]=="add to crl")){
 		$task["data"]=(String)getDependOnData($task["taskId"],""); 
 	}
 	
@@ -206,16 +212,18 @@ foreach ($tasksAr as $task)
 	
 	//if we don't get error when we try to pull the data 
 	//add it to the array of task that will return to the client
-	if(!isset($replay)||!startsWith((String)$replay,"error:")||strcmp($replay,"fail")==0){
+	if( $replay=="OK" ||(!startsWith((String)$replay,"error:") && strcmp($replay,"fail")!=0)){
 		$taskKind=$task['kind']; 
 		$taskNum=$task['taskId']; 
+		echo "was here2 \n" ; 
 		addToserverLog("agnet get task ,id-$taskNum,kind - $taskKind",$agentId,$task['implementorId'],false);
 		$newtaskArr[$index]=$task; 	
 		$index++;
 	}
 	//case of error - write it to the log
 	else{
-		addToserverLog("java Pull Error",$_POST["agentId"],$_POST["impId"],true);
+		echo "was here3 \n" ; 
+		addToserverLog("java Pull Error",$agentId,$task['implementorId'],true);
 	}
 
 

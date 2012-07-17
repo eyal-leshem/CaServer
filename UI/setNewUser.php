@@ -2,6 +2,7 @@
 
 	//chek permission 
 	include "chekSession.php"; 
+	
 	if(!chekSession())
 		exit("permission denied");
 		
@@ -9,10 +10,12 @@
     //and the connector  to the database file 
 	chdir(".."); 
 	include "hashPass.php"; 
+	include_once "dbConnector.php";  
 	
 	$userName=$_POST["userName"]; 
 	$pass=$_POST["password"]; 
 
+	
 	$con=db_Open_conn(); 
 
 	//hashed password

@@ -47,21 +47,20 @@
   /* attach a submit handler to the form */
   $("#confForm").submit(function(event) {
 
+ 
     /* stop form from submitting normally */
     event.preventDefault(); 
         
-    /* get some values from elements on the page: */
-    var $form = $( this ),
-        ,
-       url = $form.attr( 'action' );
-	   url = url+"?agentId=<?php echo $agentId ?>"; 
+	var $form = $( this ),
+         term = $form.find( 'input[name="s"]' ).val(),
+         url = $form.attr( 'action' );
+
     /* Send the data using post and put the results in a div */
     $.post( url, $(this).serialize(),
       function( data ) {
-        //  var content = $( data ).find( '#content' );
-		  alert("task craeted");
-         
-      }
+       
+		  alert("new task where created");
+         }
     );
   });
 </script>
