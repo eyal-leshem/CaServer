@@ -32,19 +32,22 @@ function addNewTask($taskId, $agentId, $dependsOn, $kind, $implementorId,$alg)
 	return $taskId;
 }
 
-function getTaskId(){
-
+//get the next taskid 
+//new number that bigger from all 
+//the past tasks ids 
+ function getTaskId(){
+	
+	//get the max task number 
 	$query=" SELECT MAX(taskId) FROM
 						(SELECT taskId From tasks  UNION
 						 SELECT taskId From donetasks	UNION	
 						 SELECT taskId FROM failedtasks) AS x	"; 
+						 
+	//ask the database 					 
 	$ans=mysql_query($str);
 	$res = mysql_fetch_array($ans); 
-	echo "<BR><BR><BR><BR><BR><BR>" ; 
-	echo $res[0]; 
-	echo $res[1];
-	echo "<BR><BR><BR><BR><BR><BR>" ;  
-	
+
+	//return the next free number 
 	if(is_null($res[0]))
 		return 1; 
 	else
@@ -91,12 +94,6 @@ if ($_POST)
 		{
 			$kv[$i] = $value;
 			$imps[$i]=$imp; 
-			echo($i);
-			echo(" \n");
-			echo($value);
-			echo(" \n");
-			echo($imp);
-			echo(" \n");
 		}
 	}
 	//the first value is agent id that it data has to be shared
@@ -107,18 +104,10 @@ if ($_POST)
 	
 	$taskId=getTaskId(); 
 	
-	echo "<BR><BR><BR><BR><BR><BR>" ; 
-	echo $taskId ;
-	echo $taskId;
-	echo "<BR><BR><BR><BR><BR><BR>" ;  
-	
-	//problem unknowen command 
-	if((strcmp($task,"generate key Pair")!=0)&&(strcmp($task,"generate secret")!=0)){
-		//TODO handle error
-	}
-	
+
 	//create a task for generating a key
 	addNewTask($taskId, $agentId, 0, $task, $implementorId,$alg);
+	addToserverLog("new task created for agent ",$agentId,$implementorId,false);	
 	
 	$dependOn = $taskId;
 	

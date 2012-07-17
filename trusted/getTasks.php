@@ -27,15 +27,20 @@ function getDependOnData($taskNum,$taskKind){
 		$ans=mysql_query($query); 
 		$ans=mysql_fetch_array($ans); 
 		
-		if($ans){
-		
+		//case found in the table of low secure data 
+		if($ans){		
 			return $ans[0]; 
 		}
 
-		require_once("http://localhost:8087/JavaBridge/java/Java.inc");
-		$world = new java("CertificateDB");
-		$taskNumStr=(String)$taskNum; 
-		return $world->getData(array($taskNumStr,$taskKind));
+		//conecetion to the java program of certificatedb 
+		if(!@include_once("http://localhost:8087/JavaBridge/java/Java.inc")){
+			$world = new java("CertificateDB");
+			$taskNumStr=(String)$taskNum; 
+			return $world->getData(array($taskNumStr,$taskKind));
+		}
+		
+		//fail to get the data
+		return "fail";
 }
 
 /**
@@ -156,9 +161,11 @@ if (!$con)
  die('Could not connect: ' . mysql_error());
 }
 
+
 //get the id of Agent (in POST)
 //$agentId = mysql_real_escape_string($_POST["agentId"]);
 $agentId = $_POST["agentName"];
+addToserverLog("agnet ask for tasks",$agentId,"no imp",true);
 updateLastConn($agentId);
 
 //get the value of bound of the pulls number of tasks from server.conf file (encoded as jason)
@@ -177,27 +184,38 @@ foreach ($tasksAr as $task)
 	if($task["dependOn"]!=0)
 	{
 		//get the relvant data kind 
+		$depOn= $task["dependOn"];
+		$taskNum=$task["taskId"]; 
 		$dataKind=dbGetDoneTaskKind($task["dependOn"]);
 		$replay=(String)getDependOnData($task["dependOn"],$dataKind);
-		$task["data"]=$replay; 
+	
+		//error in including the configuration file for the java connector 
+		if(strcmp($replay,"fail")!=0){
+			$task["data"]=$replay; 
+			addToserverLog("agnet get data of task $depOn ,for task $- $taskNum",$agentId,$task['implementorId'],false);
+		}
 
 	}
 	
-	//case of data without depend on 
+	//the only case of data without depend on 
 	if(strcmp($task["kind"],"change conf") ==0){
 		$task["data"]=(String)getDependOnData($task["taskId"],""); 
 	}
 	
 	
+	
 	//if we don't get error when we try to pull the data 
 	//add it to the array of task that will return to the client
-	if(!isset($replay)||!startsWith((String)$replay,"error:")){
-		$newtaskArr[$index]=$task; 		
+	if(!isset($replay)||!startsWith((String)$replay,"error:")||strcmp($replay,"fail")==0){
+		$taskKind=$task['kind']; 
+		$taskNum=$task['taskId']; 
+		addToserverLog("agnet get task ,id-$taskNum,kind - $taskKind",$agentId,$task['implementorId'],false);
+		$newtaskArr[$index]=$task; 	
 		$index++;
 	}
 	//case of error - write it to the log
 	else{
-		addToserverLog("javaPull-".$javaRet,$_POST["agentId"],$_POST["impId"],true);
+		addToserverLog("java Pull Error",$_POST["agentId"],$_POST["impId"],true);
 	}
 
 

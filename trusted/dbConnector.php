@@ -25,14 +25,8 @@ function db_close_conn($con){
 //add messge to the serverlog 
 function addToserverLog($msg,$agentId,$impId,$error){
 	
-	if(!$error){
-		$err="false";
-	}
-	else{
-		$err="true"; 
-	}
 	
-	$str= "INSERT INTO serverlog VALUES ('$msg',NOW(),'$agentId','$impId',$err)";
+	$str= "INSERT INTO serverlog VALUES ('$msg',NOW(),'$agentId','$impId',$error)";
 	mysql_query($str); 
 	
 	

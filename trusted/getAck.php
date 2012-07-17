@@ -12,7 +12,7 @@
 		
 	}
 
-	
+	// inform the database about task that done 
 	function dbTaskDone($taskId,$agentId,$kind,$impId){
 		
 		
@@ -43,10 +43,13 @@
 	
 	
     function saveKeyData(){
-    	echo "was in save data \n";
+    	
     	//get the properties for connecting to java class
-		require_once("http://localhost:8087/JavaBridge/java/Java.inc");
-		//connect to java 
+		if(!@include_once("http://localhost:8087/JavaBridge/java/Java.inc")){
+			return "fail"; 
+		}
+		
+		//connect to java for saving 
 		$world = new java("CertificateDB");
 		$javaRet=$world->saveData(array($_POST["taskId"],$_POST["data"],$_POST["dataKind"],$_POST["dataAlg"]));	
 		$javaRet=(string)$javaRet;
@@ -83,13 +86,18 @@
 	//-----------------------------------------//
 	
 	$con=db_Open_conn();
+	updateLastConn($_POST["agentId"]);
 	
     //case of error 
 	if(strcmp($_POST["isOk"],"false")==0){
 		
+		//get the error massege 
 		$errorMsg=$_POST["errorMsg"];
+		
+		//add note to the log 
 		addToserverLog($errorMsg,$_POST["agentId"],$_POST["impId"],true);
-		updateLastConn($_POST["agentId"]);
+		
+		//save the execption massege in the server 	
 		saveException($_POST["fullException"],$_POST["taskId"]);
 	}
 	
@@ -105,26 +113,28 @@
 		
 		//save the data (case we have a data)
 		if (isset($_POST["data"])) {
+			//case of low secure data - like agent configuration
 			if(strcmp($impId,"nop")==0)
 				saveLowSecureData();
-			else
+			
+			//use the jav connector 
+			//for saving the key 
+			else{
 				$javaAns=saveKeyData();
-				if(startsWith($javaAns,"error")){
+				//the connect to hava fail 
+				if(startsWith($javaAns,"error")||strcmp($javaAns,"fail")==0){
 					$errorFlag=true;
 				}
+			}
 		}
 		 
-		 //update the database 
-		 
-		updateLastConn($agentId,$con);
+		 //update the database 		 		
 		if(!$errorFlag){
-			dbTaskDone($taskId,$agentId,$kind,$impId); 	
-		
+			dbTaskDone($taskId,$agentId,$kind,$impId); 			
 		}
 		else{
-			echo "was here1"; 
-			addToserverLog("poblem with java conntcetor while task $taskId",$agentId,$impId,true);
-			echo "was here2"; 
+			//case of error 
+			addToserverLog("poblem with java conntcetor while fet data of task $taskId",$agentId,$impId,true);			
 		}		
 		
 	}

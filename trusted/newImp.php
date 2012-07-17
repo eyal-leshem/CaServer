@@ -35,10 +35,17 @@ function dbAddImp($agentId, $impId, $algs){
 //----------------------------//
 
 $con=db_Open_conn();
+
+//get the data the request 
 $agentId=$_POST["agentId"]; 
 $impID=$_POST["impId"]; 
-$algs=$_POST["algs"];  
+$algs=$_POST["algs"];
+ 
+//ad the new implemtor  
 dbAddImp($agentId,$impID, $algs); 
+addToserverLog("new implenetor - $impID ,for agent -$agentId ",$agentId,$impID,false);	
+
+//close the connection 
 db_close_conn($con); 
 
 ?>
