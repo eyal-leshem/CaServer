@@ -22,6 +22,7 @@ function addToserverLog($msg,$agentId,$impId,$error){
 	
 
 	$str= "INSERT INTO serverlog VALUES ('$msg',NOW(),'$agentId','$impId',$error)";
+	echo "$str \n"; 
 	mysql_query($str); 
 	
 	

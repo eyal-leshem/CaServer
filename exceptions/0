@@ -28,3 +28,59 @@ full stack trace: exceptions.AgentServiceException: can't get intance of plugin 
 Implemtor.ImplementorManager.<init>(ImplementorManager.java:48)
 Implemtor.ImplementorManager.getInstance(ImplementorManager.java:35)
 Manager.Manager.main(Manager.java:47)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't parse msg :[{"taskId":"6","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:22:30","data":"{\"sleepTime\":\"55\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"8","dependOn":"0","alg":"X.509","kind":"generate key Pair","implementorId":"tomcat","commandDate":"2012-07-17 16:47:55"},{"taskId":"10","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:48:36","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"11","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:52:21","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"}]
+Manager.Parser.parseMessage(Parser.java:51)
+Manager.Manager.main(Manager.java:61)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't parse msg :[{"taskId":"6","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:22:30","data":"{\"sleepTime\":\"55\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"8","dependOn":"0","alg":"X.509","kind":"generate key Pair","implementorId":"tomcat","commandDate":"2012-07-17 16:47:55"},{"taskId":"10","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:48:36","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"11","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:52:21","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"}]
+Manager.Parser.parseMessage(Parser.java:51)
+Manager.Manager.main(Manager.java:61)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't parse msg :[{"taskId":"6","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:22:30","data":"{\"sleepTime\":\"55\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"8","dependOn":"0","alg":"X.509","kind":"generate key Pair","implementorId":"tomcat","commandDate":"2012-07-17 16:47:55"},{"taskId":"10","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:48:36","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"11","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:52:21","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"}]
+Manager.Parser.parseMessage(Parser.java:51)
+Manager.Manager.main(Manager.java:61)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't parse msg :[{"taskId":"6","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:22:30","data":"{\"sleepTime\":\"55\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"8","dependOn":"0","alg":"X.509","kind":"generate key Pair","implementorId":"tomcat","commandDate":"2012-07-17 16:47:55"},{"taskId":"10","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:48:36","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"11","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:52:21","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"}]
+Manager.Parser.parseMessage(Parser.java:51)
+Manager.Manager.main(Manager.java:61)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't parse msg :[{"taskId":"6","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:22:30","data":"{\"sleepTime\":\"55\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"8","dependOn":"0","alg":"X.509","kind":"generate key Pair","implementorId":"tomcat","commandDate":"2012-07-17 16:47:55"},{"taskId":"10","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:48:36","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"11","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:52:21","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"}]
+Manager.Parser.parseMessage(Parser.java:51)
+Manager.Manager.main(Manager.java:61)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't parse msg :[{"taskId":"6","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:22:30","data":"{\"sleepTime\":\"55\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"8","dependOn":"0","alg":"X.509","kind":"generate key Pair","implementorId":"tomcat","commandDate":"2012-07-17 16:47:55"},{"taskId":"10","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:48:36","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"11","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:52:21","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"}]
+Manager.Parser.parseMessage(Parser.java:51)
+Manager.Manager.main(Manager.java:61)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't parse msg :[{"taskId":"6","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:22:30","data":"{\"sleepTime\":\"55\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"8","dependOn":"0","alg":"X.509","kind":"generate key Pair","implementorId":"tomcat","commandDate":"2012-07-17 16:47:55"},{"taskId":"10","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:48:36","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"11","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:52:21","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"}]
+Manager.Parser.parseMessage(Parser.java:51)
+Manager.Manager.main(Manager.java:61)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't parse msg :{"taskId":"10","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:48:36","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"11","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:52:21","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"}]
+Manager.Parser.parseMessage(Parser.java:52)
+Manager.Manager.main(Manager.java:61)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't parse msg :{"taskId":"11","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-17 16:52:21","data":"{\"sleepTime\":\"5\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"}]
+Manager.Parser.parseMessage(Parser.java:53)
+Manager.Manager.main(Manager.java:61)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can't parse msg :{"taskId":"13","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-18 10:09:31","data":"{\"sleepTime\":\"55\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"14","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-18 10:09:34","data":"{\"sleepTime\":\"55\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"},{"taskId":"15","dependOn":"0","alg":"","kind":"change conf","implementorId":"nop","commandDate":"2012-07-18 10:09:36","data":"{\"sleepTime\":\"55\",\"urlSendAck\":\"https:\/\/localhost\/SendAck\",\"urlNewImplemtor\":\"https:\/\/localhost\/newImp\",\"urlGetTask\":\"https:\/\/localhost\/getTasks\"}"}]
+Manager.Parser.parseMessage(Parser.java:53)
+Manager.Manager.main(Manager.java:61)
+
+-------------------------------------------------
+full stack trace: java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+java.lang.String.substring(Unknown Source)
+Manager.Parser.parseMessage(Parser.java:33)
+Manager.Manager.main(Manager.java:61)

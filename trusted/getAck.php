@@ -80,7 +80,7 @@
 	
 	
 	}
-	
+	 
 	
 	//-------------------------------------------//
 	//---------------script---------------------//
@@ -94,6 +94,10 @@
 		
 		//get the error massege 
 		$errorMsg=$_POST["errorMsg"];
+		
+		echo "$errorMsg \n"; 
+		echo $_POST["agentId"]."\n"; 
+		echo $_POST["impId"]."\n";
 		
 		//add note to the log 
 		addToserverLog($errorMsg,$_POST["agentId"],$_POST["impId"],true);

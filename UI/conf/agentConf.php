@@ -48,4 +48,5 @@ choose agent : <select  name= "agentIdForShare" id="agentSelect0">
 </div>
 
 <div id="dataAgentConf">
+	
 </div> 

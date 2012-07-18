@@ -20,11 +20,8 @@ $agentId=$_GET["agentId"];
 
 $query= " SELECT  implementorId  FROM  implementors WHERE agentId='$agentId'" ;
 
-echo $query."<br>"; 
-echo $con."<BR>";  
-
-
-echo  getOptions(mysql_query($query));	
+echo "<option value=\"all\">all</option>";
+ getOptions(mysql_query($query));	
 
 db_close_conn($con);
  

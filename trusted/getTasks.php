@@ -127,8 +127,16 @@ function dbGetDoneTaskKind($taskId){
 	$res=mysql_query($str);
 	
 	$ans=mysql_fetch_array($res);
+	
+	if($ans[0]=="generate secret")
+		$dataKind="secret key";
+	elseif($ans[0]=="generate key Pair")
+		$dataKind="certificate"; 
+	else 
+		$dataKind=$and[0]; 
+		
 			
-	return $ans[0]; 
+	return $dataKind; 
 	
 	
 }
@@ -167,13 +175,13 @@ if (!$con)
 //get the id of Agent (in POST)
 //$agentId = mysql_real_escape_string($_POST["agentId"]);
 $agentId = $_POST["agentName"];
-addToserverLog("agnet ask for tasks",$agentId,"no imp",true);
+addToserverLog("agnet ask for tasks",$agentId,"no imp",false);
 updateLastConn($agentId);
 
 //get the value of bound of the pulls number of tasks from server.conf file (encoded as jason)
 $jsonData = json_decode(file_get_contents('../conf.cnf'), true);
 $pullBound = $jsonData["pullsNumBound"];
-echo "pullBound", $pullBound;
+
 
 $tasksAr = getTasks($agentId, $pullBound);
 
@@ -190,6 +198,7 @@ foreach ($tasksAr as $task)
 		$depOn= $task["dependOn"];
 		$taskNum=$task["taskId"]; 
 		$dataKind=dbGetDoneTaskKind($task["dependOn"]);
+		echo "$dataKind \n"; 
 		$replay=(String)getDependOnData($task["dependOn"],$dataKind);
 		
 		echo $task['implementorId']."\n"; 

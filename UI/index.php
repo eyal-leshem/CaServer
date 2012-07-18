@@ -27,6 +27,10 @@ if (!chekSession()){
 			$("#addUser").click(function(){
 									$("#content").load("addUser.php");
 								});
+								
+			$("#log").click(function(){
+									$("#content").load("log/serverLog.php");
+								});
 	});
 	</script>
 	
