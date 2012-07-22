@@ -1,0 +1,7 @@
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)

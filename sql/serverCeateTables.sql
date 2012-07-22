@@ -52,12 +52,10 @@ CREATE TABLE	failedTasks(
 						failureDate		datetime
 );
 
-CREATE TABLE	sessions(
-						userName		varchar(64), 
-						password		varchar(64),
-						contime			int, 
-						id				varchar(128) 
-); 
+CREATE TABLE	plugins(		
+			agentId			varchar(45), 
+			pluginName		varchar(45)			
+);
 
 Create Table    AgentsConf(
 					agentId 		varchar(45),

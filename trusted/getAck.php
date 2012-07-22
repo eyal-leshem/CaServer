@@ -59,10 +59,30 @@
     }
 	
 	function saveLowSecureData(){
-		$a=$_POST['data'];
-		$b=$_POST['agentId'];
-		$query="UPDATE agentsconf SET AgentConf='$a' WHERE agentId='$b'"; 
-		mysql_query($query);
+	
+		$taskId=$_POST["taskId"];
+		$agentId=$_POST['agentId'];
+		$data=$_POST['data'];
+		
+		//get lint of task
+		$kindsQuery="SELECT kind FROM tasks WHERE  taskId=$taskId";
+		$ans=mysql_query($kindsQuery);
+		$ansArr=mysql_fetch_array($ans);
+		$kind=$ansArr[0]; 
+		
+		//update configuration on server  
+		if($kind=="change conf"){
+			$query="UPDATE agentsconf SET AgentConf='$data' WHERE agentId='$agentId'"; 
+			mysql_query($query);
+		}
+		
+		//add new instance
+		if($kind=="new inst"){
+			
+			$query="INSERT INTO implementors VALUES ('$agentId','$data')"; 
+			echo "$query \n" ; 
+			mysql_query($query);
+		}
 	}
 
 	/*

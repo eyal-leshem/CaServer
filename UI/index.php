@@ -31,6 +31,9 @@ if (!chekSession()){
 			$("#log").click(function(){
 									$("#content").load("log/serverLog.php");
 								});
+			$("#agentPage").click(function(){
+									$("#content").load("agents/agentBar.php");
+								});
 	});
 	</script>
 	

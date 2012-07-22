@@ -213,7 +213,7 @@ foreach ($tasksAr as $task)
 	}
 	
 	//the only case of data without depend on 
-	if(strcmp($task["kind"],"change conf") ==0  || ($task["kind"]=="remove certifcate") || ($task["kind"]=="add to crl")){
+	if(strcmp($task["kind"],"change conf") ==0  || ($task["kind"]=="remove certifcate") || ($task["kind"]=="add to crl")||($task["kind"]=="new inst")){
 		$task["data"]=(String)getDependOnData($task["taskId"],""); 
 	}
 	

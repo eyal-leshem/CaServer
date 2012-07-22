@@ -54,9 +54,6 @@
 		
 		$ans=mysql_query($query);
 		
-		echo $query;
-		echo "<BR>"; 
-
 		//print all the rows in the table 
 		$row=mysql_fetch_array($ans);
 		while($row){
