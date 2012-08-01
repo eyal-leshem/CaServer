@@ -42,7 +42,30 @@ $(document).ready(function(){
 
 </script>
 
- <form method="post" id="impfrom"  action="agents/genInstTask.php" class="well" enctype="multipart/form-data">
+
+<script type="text/javascript">
+  /* attach a submit handler to the form */
+  $("#newInstForm").submit(function(event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault(); 
+        
+	var $form = $( this ),
+         term = $form.find( 'input[name="s"]' ).val(),
+         url = $form.attr( 'action' );
+
+    /* Send the data using post and put the results in a div */
+    $.post( url, $(this).serialize(),
+      function( data ) {
+       
+		  alert("task for create new instance where created");
+         }
+    );
+  });
+</script>
+
+
+ <form method="post" id="newInstForm"  action="agents/genInstTask.php" class="well" enctype="multipart/form-data">
 		
 		<!-- agent fot commiting the task -->
 		Agent for Create key : <select  name= "agentIdForShare" id="agentSelect0">

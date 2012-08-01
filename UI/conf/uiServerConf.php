@@ -48,7 +48,7 @@
 	<div class="span4">
   
 		<p id="headNewAgentConf">
-			now agents conf:   <BR>
+			current server configuration: <BR>
 		</p>
 	 
 		 <table class="table">

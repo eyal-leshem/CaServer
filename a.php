@@ -4,6 +4,31 @@ include 'dbConnector.php';
 include 'MyKeyTool.php';
 include 'hashPass.php'; 
 
+
+//chek if the agnet name is free
+function agentNameFreeCheck($agentName){
+	
+	
+	//check for agent with this name 	
+	$query="SELECT agentId FROM agents WHERE agentId='$agentName'"; 
+	$ans=mysql_query($query);
+	
+	//already agent with this name
+	if(mysql_fetch_array($ans)!=false)
+		return false; 
+		
+	//check for agent with this name in the wating table 	
+	$query="SELECT agentId FROM inReg WHERE agentId='$agentName'"; 
+	$ans=mysql_query($query);
+	
+	//already agent with this name
+	if(mysql_fetch_array($ans)!=false)
+		return false; 
+		
+	return true; 
+
+}
+
 /**
 *this function ask the if we have that usert name and password in our db - with this password 
 */
@@ -26,13 +51,23 @@ function dbChekInstallerPassword($name,$password){
 function dbAddNewAgent($agentName,$imps){
 
 	//prevent sql injection 
-	$agentName= mysql_real_escape_string($agentName); 
-		
-	//query for update the agents table  
-	$str="INSERT INTO agents  VALUES ('".$agentName."',NOW(),NOW())";
-	if(mysql_query($str)==false){
+	$agentName= mysql_real_escape_string($agentName);
+
+	if(!agentNameFreeCheck($agentName))
 		return false; 
-	} 
+		
+	//for radical case- when another agent with that name 
+	//already resgister but fail to approve the register 
+	//so we need to delete the plugins of the old implemtor 
+	$str="DELETE FROM plugins  WHERE  agentId='$agentName'";
+	mysql_query($str);
+	
+	$current=time(); 
+	
+	$str="INSERT INTO inReg VALUES ('$agentName','$current')";
+	mysql_query($str);
+	
+	
 	
 	//query for update the implemtors table with the implemtors
 	//of this agent 
@@ -41,8 +76,10 @@ function dbAddNewAgent($agentName,$imps){
 		//prevent sql injection 
 		$imp= mysql_real_escape_string($imp);
     	
-		$str="INSERT INTO implementors  VALUES ('".$agentName."','".$imp."')";
-    	mysql_query($str);
+		if($imp!=""){		
+			$str="INSERT INTO plugins  VALUES ('".$agentName."','".$imp."')";
+			mysql_query($str);
+		}
 	}
 	 return true; 
 }

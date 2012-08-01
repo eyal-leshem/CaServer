@@ -16,6 +16,14 @@
 						$("#agentContent").load("agents/addInstForm.php");
 		});	
 		
+		$("#agentConf").click(function(){
+						$("#agentContent").load("agents/agentConf.php");
+		});	
+		
+		$("#agentData").click(function(){
+						$("#agentContent").load("agents/agentData.php");
+		});	
+		
 		
 	});
 	</script>
@@ -28,7 +36,9 @@
 			<div id="navContainer">
 				<div id="navigation">
 					<ul class="nav nav-tabs">
-						<li id="createIntstance"><a href="#">create Instance</a></li>								
+						<li id="createIntstance"><a href="#">create implementor Instance</a></li>
+						<li id="agentConf"><a href="#">configure agent</a></li>		
+						<li id="agentData"><a href="#">agent data</a></li> 						
 					</ul>
 				</div>
 			</div>

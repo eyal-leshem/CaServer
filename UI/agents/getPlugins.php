@@ -26,9 +26,6 @@ $agentId=$_GET["agentId"];
 
 $query= " SELECT  pluginName  FROM  plugins WHERE agentId='$agentId'" ;
 
-echo $query."<br>"; 
-echo $con."<BR>";  
-
 
 echo  getOptions(mysql_query($query));	
 
