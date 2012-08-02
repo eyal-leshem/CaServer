@@ -5,44 +5,48 @@
 	//--------------functions-------------//
 	//-----------------------------------//
 	
+	
+	//function that check if the haystack string start with the needle string
 	function startsWith($haystack, $needle){
-		
 		$length = strlen($needle);
-		return (substr($haystack, 0, $length) === $needle);
-		
+		return (substr($haystack, 0, $length) === $needle);		
 	}
 
-	// inform the database about task that done 
+	/*
+		inform the database about task that done 
+	*/
 	function dbTaskDone($taskId,$agentId,$kin,$impId){
 		
 		
 		//avoid sql injection
 		$agentId = mysql_real_escape_string($agentId);
 		$taskId = mysql_real_escape_string($taskId);
-		
+	
+		//get data about the task 
 		$commandDateQury="SELECT commandDate,pullNum,kind FROM tasks WHERE taskId=".$taskId; 
-		$ans=mysql_fetch_array(mysql_query($commandDateQury));
-		
-		
+		$ans=mysql_fetch_array(mysql_query($commandDateQury));		
 		$commandDate=$ans[0]; 
 		$pullNum=$ans[1]; 
 		$kind=$ans[2]; 
 		
-		//add this to data base
+		//insert it itno the table of the done tasks 
 		$str="INSERT INTO doneTasks VALUES ('".$taskId."','".$kind."', '".$agentId."','".$impId."', '".$commandDate."',NOW(),$pullNum)";
 		mysql_query($str);
-		//delte it form task 
+		
+		//delte it form the queued tasks 
 		$str="DELETE FROM tasks WHERE taskId=".$taskId;
 		mysql_query($str);
 		
 		//add log message 
 		$str= "INSERT INTO serverlog VALUES (\"task".$taskId." done successfully\",NOW(),'".$agentId."','".$impId."',false)" ;  
 		$ans=mysql_query($str);
-		echo $ans; 
+
 	}
 
-	
-	
+	/*
+		use the java php connector to save 
+		the keys in a keystore 
+	*/
     function saveKeyData(){
     	
     	//get the properties for connecting to java class
@@ -58,8 +62,13 @@
 				
     }
 	
+	/*
+		data that we don't need to save in key store 
+		so we store it in the database of the server s
+	*/
 	function saveLowSecureData(){
 	
+		//get the data from post 
 		$taskId=$_POST["taskId"];
 		$agentId=$_POST['agentId'];
 		$data=$_POST['data'];
@@ -78,16 +87,25 @@
 		
 		//add new instance
 		if($kind=="new inst"){
+			$dataArr=split(",",$data); 
+			$arrLength=count($dataArr);
 			
-			$query="INSERT INTO implementors VALUES ('$agentId','$data')"; 
-			echo "$query \n" ; 
+			$impName=$dataArr[0]; 
+			$query="INSERT INTO implementors VALUES ('$agentId','$impName')"; 
 			mysql_query($query);
+			
+			for($i=1;$i<$arrLength;$i=$i+1){
+					$algName=$dataArr[$i]; 
+					$query="INSERT INTO algorithms VALUES ('$agentId','$impName','$algName')";
+					mysql_query($query);
+			}			
+			
 		}
 	}
 
 	/*
-	*write the exception ito file 
-	* the filename will b suitable to the taskid; 
+		write the exception ito file 
+	 	the filename will b suitable to the taskid; 
 	*/
     function	saveException($strExcption,$taskId){
 	
@@ -96,9 +114,6 @@
 		fwrite($file, $str);
 		fwrite($file,$strExcption); 
 		
-		
-	
-	
 	}
 	 
 	
@@ -114,11 +129,7 @@
 		
 		//get the error massege 
 		$errorMsg=$_POST["errorMsg"];
-		
-		echo "$errorMsg \n"; 
-		echo $_POST["agentId"]."\n"; 
-		echo $_POST["impId"]."\n";
-		
+					
 		//add note to the log 
 		addToserverLog($errorMsg,$_POST["agentId"],$_POST["impId"],true);
 		
@@ -134,15 +145,17 @@
 		$kind=$_POST["dataKind"];
 		$impId=$_POST["impId"]; 
 
+		//defualt 
 		$errorFlag=false; 
 		
 		//save the data (case we have a data)
 		if (isset($_POST["data"])) {
+			
 			//case of low secure data - like agent configuration
 			if(strcmp($impId,"nop")==0)
 				saveLowSecureData();
 			
-			//use the jav connector 
+			//use the java connector 
 			//for saving the key 
 			else{
 				$javaAns=saveKeyData();
@@ -151,7 +164,8 @@
 					$errorFlag=true;
 				}
 			}
-		}
+			
+		}//end of if isset 
 		 
 		 //update the database 		 		
 		if(!$errorFlag){
@@ -164,7 +178,7 @@
 		
 	}
 
-
+	//close the connection 
 	db_close_conn($con); 
 
 

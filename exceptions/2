@@ -44,3 +44,10 @@ full stack trace: exceptions.AgentServiceException: can't genrate certifcate fac
 Commands.InstallCertCommand.excute(InstallCertCommand.java:26)
 Implemtor.ImplementorManager.commitTask(ImplementorManager.java:69)
 Manager.Manager.main(Manager.java:75)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)

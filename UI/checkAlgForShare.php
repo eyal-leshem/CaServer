@@ -27,19 +27,28 @@ function getImplementors($ans, $algForShare, $agentId){
 		$nextAlg = mysql_fetch_array($algsAns);
 		
 		
-		//check if this implementor has the required algorithm
-		while($nextAlg)
-		{
-			if(strcmp($nextAlg[0], $algForShare) == 0)
+		//the only authorized type form key pair is X.509 
+		if($algForShare!="X.509"){
+			
+			//check if this implementor has the required algorithm
+			while($nextAlg)
 			{
-				echo "<option value=\"$next[0]\">$next[0]</option>"; 
+				if(strcmp($nextAlg[0], $algForShare) == 0)
+				{
+					//and this implemtor and continue 
+					echo "<option value=\"$next[0]\">$next[0]</option>"; 
+					break; 
+				}
+				$nextAlg = mysql_fetch_array($algsAns);
 			}
-			$nextAlg = mysql_fetch_array($algsAns);
+		}
+		//if it is X.509 add this implemntor 
+		else{
+			echo "<option value=\"$next[0]\">$next[0]</option>"; 
 		}
 		
-		
 		$next=mysql_fetch_array($ans);
-	}	
+	}//end of while($next)	
 
 }
 
@@ -48,10 +57,8 @@ $algForShare=$_GET["algForShare"];
 
 $query= " SELECT implementorId FROM implementors WHERE agentId='$agentId'" ;
 
-echo $query."<br>"; 
-echo $con."<BR>"; 
 
-echo  getImplementors(mysql_query($query), $algForShare, $agentId);	
+getImplementors(mysql_query($query), $algForShare, $agentId);	
 
 db_close_conn($con);
  

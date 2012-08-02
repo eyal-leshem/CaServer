@@ -58,3 +58,108 @@ full stack trace: exceptions.AgentServiceException: implementor can't genarate s
 Commands.GenrateSecertCommand.excute(GenrateSecertCommand.java:32)
 Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
 Manager.Manager.main(Manager.java:76)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)

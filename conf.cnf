@@ -3,6 +3,8 @@
 	"dbAddress":"localhost:3306",
 	"dbUserName":"root", 
 	"dbName":"server" ,
+	"password":"a10097", 
 	"timeLimit":1800
+	
 	
 }

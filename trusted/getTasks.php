@@ -19,11 +19,12 @@ function startsWith($str, $startStr){
 
 /**
 *call to java function (while use java-php brige),
-*that return te relvant data  from this task 
+*that return te relvant data from this task 
 *(that data where store in the javakeystroe of the server)
 */
 function getDependOnData($taskNum,$taskKind){
 		
+		//check if this data is in low secure data 
 		echo $taskNum; 
 		$query="SELECT aData From lowSecureData WHERE taskId='$taskNum'";
 		$ans=mysql_query($query); 
@@ -50,12 +51,12 @@ function getDependOnData($taskNum,$taskKind){
 */
 function getTasks($agentId, $pullNumBound)
 {
-	
+	//avoid sql injection 
 	$agentId = mysql_real_escape_string($agentId);
 	
+	//get the relvant data to this task 
 	$req = "SELECT * FROM tasks WHERE AgentId = '$agentId'";
 	$result = mysql_query($req);
-
 	$tasksNum=mysql_numrows($result);
 	$tasksAr = array();
 	
@@ -84,27 +85,32 @@ function getTasks($agentId, $pullNumBound)
 		
 		//increase the pullNum for updating it in the DB in tasks table
 		$pullNum++;
+		
 		//if pull number > counter from configurations - move the task to failed tasks
 		if($pullNum > $pullNumBound)
 		{
 			$taskId = $msgData["taskId"];
 			$imId =  $msgData["implementorId"];
+			
 			//add to failedTasks
 			$str="INSERT INTO failedTasks VALUES ('$taskId','$agentId','$imId',NOW() )";
 			mysql_query($str);
-			
 			
 			//remove the task from tasks (now it is in the failedTasks so it has not to be in tasks anymore)
 			$str = "DELETE FROM tasks WHERE taskId = '$taskId' OR dependOn = '$taskId'";
 			mysql_query($str);
 		}
+		
 		else
 		{
+			//the task id 
 			$agentCurid = $msgData["taskId"];
+		
 			//increase the pull counter in the tasks and update the table
 			$updateReq = "UPDATE tasks SET pullNum = '$pullNum' WHERE taskId = '$agentCurid'";
 			mysql_query($updateReq);
 			
+			//add it to the array of tasks 
 			$tasksAr[$index] = $msgData;
 		}
 		
@@ -144,11 +150,11 @@ function dbGetDoneTaskKind($taskId){
 //checks if the taskId done
 function checkTaskDone($taskId)
 {
-	$database = "server";
-	//select the DB
-	@mysql_select_db($database) or die( "Unable to select database");
+	
+	//try to get it from the done tasks table 
 	$req = "SELECT * FROM doneTasks WHERE taskId = '$taskId'";
 	$result = mysql_query($req);
+
 	//if the task with required id not been done yet - return false
 	if(mysql_numrows($result) == 0)
 	{
@@ -182,29 +188,30 @@ updateLastConn($agentId);
 $jsonData = json_decode(file_get_contents('../conf.cnf'), true);
 $pullBound = $jsonData["pullsNumBound"];
 
-
+//get the array  that contain the tasks 
 $tasksAr = getTasks($agentId, $pullBound);
 
 $index=0; 
-//$newtaskArr=array(); 
+
+
 foreach ($tasksAr as $task)
 {
+	
+	//if nothing happend it's ok 
 	$replay="OK"; 
+	
 	//if depend on isn't 0 it's says that we Depends upon another task 
 	//and need to get here data 
 	if($task["dependOn"]!=0)
 	{
+		
 		//get the relvant data kind 
 		$depOn= $task["dependOn"];
 		$taskNum=$task["taskId"]; 
 		$dataKind=dbGetDoneTaskKind($task["dependOn"]);
-		echo "$dataKind \n"; 
-		$replay=(String)getDependOnData($task["dependOn"],$dataKind);
+		$replay=(String)getDependOnData($task["dependOn"],$dataKind);		
 		
-		echo $task['implementorId']."\n"; 
-		echo $taskNum."\n"; 
-	
-		//error in including the configuration file for the java connector 
+		//error while including the configuration file for the java connector 
 		if(strcmp($replay,"fail")!=0){
 			$task["data"]=$replay; 
 			addToserverLog("agnet get data of task $depOn ,for task $- $taskNum",$agentId,$task['implementorId'],false);
@@ -217,24 +224,20 @@ foreach ($tasksAr as $task)
 		$task["data"]=(String)getDependOnData($task["taskId"],""); 
 	}
 	
-	
-	
 	//if we don't get error when we try to pull the data 
 	//add it to the array of task that will return to the client
 	if( $replay=="OK" ||(!startsWith((String)$replay,"error:") && strcmp($replay,"fail")!=0)){
 		$taskKind=$task['kind']; 
 		$taskNum=$task['taskId']; 
-		echo "was here2 \n" ; 
 		addToserverLog("agnet get task ,id-$taskNum,kind - $taskKind",$agentId,$task['implementorId'],false);
 		$newtaskArr[$index]=$task; 	
 		$index++;
 	}
+	
 	//case of error - write it to the log
 	else{
-		echo "was here3 \n" ; 
 		addToserverLog("java Pull Error",$agentId,$task['implementorId'],true);
 	}
-
 
 }
 

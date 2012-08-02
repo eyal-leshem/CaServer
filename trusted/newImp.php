@@ -1,4 +1,5 @@
 <?php 
+
 include 'dbConnector.php';
 //------------------------------//
 //----------function's---------// 
@@ -6,36 +7,27 @@ include 'dbConnector.php';
 
 function dbAddImp($agentId, $impId){
 		
-		
 		//avoid sql injection
 		$agentId = mysql_real_escape_string($agentId);
-		$impId = mysql_real_escape_string($impId);
-	
+		$impId = mysql_real_escape_string($impId);	
 		
+		//insert this plugin to the plugin table
 		$query="INSERT INTO plugins VALUES('$agentId','$impId')";		
 		echo $query; 
-		mysql_query($query);
-		
-		
-		
-		
-	
+		mysql_query($query);		
 }
-
-
-
-
 
 //------------------------------//
 //------------script-----------// 
 //----------------------------//
 
+
+//open connection to the database 
 $con=db_Open_conn();
 
 //get the data the request 
 $agentId=$_POST["agentId"]; 
 $impID=$_POST["impId"]; 
-
  
 //ad the new implemtor  
 dbAddImp($agentId,$impID, $algs); 
