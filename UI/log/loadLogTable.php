@@ -1,4 +1,9 @@
 <?php 
+
+ /*
+ 	load the table with the data kind 
+	that we get from the filters 
+ */
 	
 	
 	//chek permission 
@@ -76,7 +81,10 @@
 ?> 
 </table>
 	
-
+<?php
+	//close connection 
+	db_close_conn($con);
+?>
 	
 	
 	

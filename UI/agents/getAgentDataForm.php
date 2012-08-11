@@ -1,3 +1,4 @@
+<!-- php file that create the form with data about spesific agent -->
 <?php 
 
 	//check that this is a register user 
@@ -24,9 +25,11 @@
 	$regDate=$ansArr[2];
 	$lastConn=$ansArr[1]; 
 	
+	//get plugins
 	$query="SELECT pluginName FROM plugins WHERE agentId='$agentId'"; 
 	$pluginRsc=mysql_query($query);
 	
+	//get implemtors 
 	$query="select implementorId from implementors WHERE agentId='$agentId'"; 
 	$impRsc=mysql_query($query);
 	
@@ -37,7 +40,7 @@
 <div class="row">	
 	<div class="span3">
 		<dl class="well">
-
+		<!-- the date of last connection and registration of the agent --> 
 		  <dt>agent register date:</dt>
 		  <dd> <?php echo $regDate ?>  </dd>
 		  <dt>agent last connection date</dt>
@@ -48,7 +51,7 @@
 
 
 	<div class="span4">
-		
+			<!-- the plugins table --> 
 			<table class="table table-bordered"">
 				<!--table head --> 
 				<tr>
@@ -65,20 +68,16 @@
 				<?php
 						$row=mysql_fetch_array($pluginRsc);
 				  }
-				?>
-				
-				
-				
-				
+				?>			
+								
 			</table>
-
 	</div>
 	
 	
 	<div class="span4">
 		
 			<table class="table table-bordered"">
-				<!--table head --> 
+				<!--the implemtor tavle --> 
 				<tr>
 						<td><b>implmentors</b></td>
 				</tr>
@@ -93,20 +92,20 @@
 				<?php
 						$row=mysql_fetch_array($impRsc);
 				  }
-				?>
-				
-				
-				
-				
+				?>											
 			</table>
-
+			
 	</div>
-
+	
 </div>
 
 
 
+<?php
+	//close connection 
+	db_close_conn($con);
 
+?>
 
 
 

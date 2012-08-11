@@ -1,0 +1,10 @@
+<Location /MA>
+	 SSLRequireSSL
+
+</Location> 
+
+<Location /MA/trusted>
+	 SSLRequireSSL
+	SSLVerifyClient require
+	SSLVerifyDepth 10
+</Location>   

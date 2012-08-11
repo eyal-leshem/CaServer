@@ -1,9 +1,13 @@
+
+<!-- this is the from to add new user --> 
+
 <?php
 include "chekSession.php"; 
 if(!chekSession())
 	exit("permission denied");
 ?>
 
+<!-- script to prevent moving to other page --> 
 <script type="text/javascript">
   /* attach a submit handler to the form */
   $("#addUserform").submit(function(event) {
@@ -25,6 +29,7 @@ if(!chekSession())
   });
 </script>
 
+<!-- the form  --> 
 <div class="span4">
 	<form method="post" id="addUserform"  action="setNewUser.php" class="well">
 			userName: <input type="text" name="userName" /><br />

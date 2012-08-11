@@ -1,26 +1,33 @@
-
-
 <?php
+
+/*
+	change the configuration file to contain the relvant data 
+*/
 
 //chek  cofiguration's filed not empty empty 
 if(!strcmp($_GET["dbName"],"")!=0){
 	echo "<font color=\"red\">ERROR:date base name must contain value </font>";
+	return;
 }
 
 if(!strcmp($_GET["dbUserName"],"")!=0){
 	echo "<font color=\"red\">ERROR:db name must contain value </font>";
+	return;
 }
 
 if(!strcmp($_GET["dbAddress"],"")!=0){
 	echo "<font color=\"red\">ERROR:db name must contain value </font>";
+	return;
 }
 
 if(!preg_match("/^[0-9]+$/", $_GET["timeLimit"])){
 	echo "<font color=\"red\">ERROR:time limit must to an nubmer </font>";
+	return;
 }
 
 if(!preg_match("/^[0-9]+$/", $_GET["pullsNumBound"])){
 	echo "<font color=\"red\">ERROR:time pulls num bound must to be an nubmer </font>";
+	return; 
 }
 
 	
@@ -30,6 +37,7 @@ $toJson["timeLimit"]=$_GET["timeLimit"];
 $toJson["dbUserName"]=$_GET["dbUserName"];
 $toJson["dbAddress"]=$_GET["dbAddress"];
 $toJson["pullsNumBound"]=$_GET["pullsNumBound"];
+$toJson["password"]=$_GET["dbPassword"];
 
 //encode it into json 
 $json=json_encode($toJson);  

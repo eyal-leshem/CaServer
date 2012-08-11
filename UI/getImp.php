@@ -1,4 +1,13 @@
 <?php
+
+
+/**
+	create option for combobox of all the  impelmetors  
+	for relvant agent  
+*/
+
+
+//open connection to the database 
 chdir (".."); 
 include_once 'dbConnector.php';
 $con=db_Open_conn(); 

@@ -3,12 +3,21 @@ include 'ServerConf.php';
 
 function db_Open_conn(){
 	
+
+	
 	//load the data of username and database name
 	$dbAdd = loadConf("dbAddress");
 	$dbUserName = loadConf("dbUserName");
+	$dbPassword = loadConf("password"); 
 	
-	$con=mysql_connect($dbAdd, $dbUserName, "a10097");
+
+	
+	//open the conection and select the database 
+	$con=mysql_connect($dbAdd, $dbUserName, $dbPassword);
 	mysql_select_db(loadConf("dbName"),$con);
+	
+	
+	//return the connection 
 	return $con; 
 }
 

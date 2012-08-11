@@ -1,4 +1,6 @@
 
+<!-- the bar of the taks page -->
+
 <?php
 	//chek permission 
 	include "chekSession.php"; 
@@ -10,6 +12,7 @@
 	
 <script type="text/javascript" src="jquery-1.7.2.js"></script>
 <script type="text/javascript">
+	//use jQuery to load the functions 
 	$(document).ready(function(){
 		$("#queueTasks").click(function(){
 						$("#tasksContent").load("tasks/queueTasks.php");
@@ -33,6 +36,7 @@
 	
 	<body>
 			<div id="navContainer">
+			<!--the list of the tabs --> 
 				<div id="navigation">
 					<ul class="nav nav-tabs">
 						<li id="queueTasks"> <a href="#">tasks in queue</a></li>

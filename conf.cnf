@@ -1,10 +1,1 @@
-{
-	"pullsNumBound":"15",
-	"dbAddress":"localhost:3306",
-	"dbUserName":"root", 
-	"dbName":"server" ,
-	"password":"a10097", 
-	"timeLimit":1800
-	
-	
-}
+{"timeLimit":1800,"dbName":"server","dbAddress":"localhost:3306","dbUserName":"root","pullsNumBound":10,"password":"a10097"}

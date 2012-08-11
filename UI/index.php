@@ -7,9 +7,17 @@ if (!chekSession()){
 	echo "<meta HTTP-EQUIV=\"REFRESH\" content=\"0; url=disconect.html\">" ; 
 }	
 ?>
-	 
+	 <!-- the style sheet of bootstarp  --> 
 	<link  rel="stylesheet" type="text/css" href="boot/docs/assets/css/bootstrap.css" />
+	
+	<!-- include the jQuery libery  -->
 	<script type="text/javascript" src="jquery-1.7.2.js"></script>
+	
+	<!-- 
+		main menu
+		use jQuery method to load the content
+		into the <div id="content"> 
+	--> 
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#taskPage").click(function(){
@@ -41,7 +49,7 @@ if (!chekSession()){
 	<body>
 		<div id="masthead">
 			
-			<!-- the tab bar -->
+			<!-- the main menu tab bar -->
 			<div id="navContainer">
 				<div id="navigation">
 					<ul class="nav nav-tabs">

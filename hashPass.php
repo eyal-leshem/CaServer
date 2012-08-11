@@ -2,8 +2,10 @@
 
 define('SALT_LENGTH', 9);
 
+//
 function generateHash($plainText, $salt = null)
 {
+	//get random string in require length
     if ($salt === null)
     {
         $salt = substr(uniqid(rand(), true), 0, SALT_LENGTH);
@@ -13,28 +15,25 @@ function generateHash($plainText, $salt = null)
         $salt = substr($salt, 0, SALT_LENGTH);
     }
 
+	//add it to the password and genrate the hashes password 
     return $salt . hash("sha256",$salt . $plainText);
 }
 
+
+//check that the password and the hashed password 
+// are same in  the src 
 function checkEqual($password,$hashPassword){
 
+	//take the random number from the hashed password
 	$salt = substr($hashPassword, 0, SALT_LENGTH);	
 	
+	//get the hashed part 
 	$hashed=substr($hashPassword,SALT_LENGTH);
 	
+	//add the random number to the unhashed password 
 	$toHash=$salt.$password;
 	
-	echo $salt; 
-	echo "<BR>" ; 
-	echo $hashPassword; 
-	echo "<BR>" ; 
-	echo "new hash: <BR>";  
-	echo hash("sha256",$toHash); 
-	echo "<BR>" ; 
-	echo "old hash: <BR>"; 
-	echo $hashed; 
-	echo "<BR>" ;
-	
+	//make hash and compere 
 	if(strcmp(hash("sha256",$toHash),$hashed)==0){
 		return true; 
 	}

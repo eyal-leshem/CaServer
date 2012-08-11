@@ -1,4 +1,6 @@
-
+<!-- the page that contain the log of the server , 
+ the page supply some filters for filtering the log file --> 
+ 
 <?php 
 //chek permission 
 chdir("..");
@@ -15,14 +17,15 @@ $con=db_Open_conn();
 chdir ("UI");	
 chdir("log");  
 
+
+//get all the agents in the combo box 
 function getAgentsOpt(){
 	$query= " SELECT  agentId FROM agents" ; 
 	return getOptions(mysql_query($query)); 
 }
 
-
-
-
+//print mysql answer in option html tag 
+//for use it in combobox 
 function getOptions($ans){
 	
 	$next=mysql_fetch_array($ans);
@@ -36,7 +39,8 @@ function getOptions($ans){
 
 <script type="text/javascript">
 $(document).ready(function(){
-						
+				
+			//when agent change load the relvant implemtors into combobox 
 			$("#agentsForLog").change(function() {
 									
 									agentName=$("#agentsForLog").val();
@@ -52,6 +56,7 @@ $(document).ready(function(){
 			
 			}); 
 			
+			//when filter chage change the table suitable 
 			$(".changeTable").change(function() {
 									
 					agentName=$("#agentsForLog").val();
@@ -63,6 +68,7 @@ $(document).ready(function(){
 					
 			});
 			
+			//while page load show all table without filters 
 			$("#logTableContent").load("log/loadlogTable.php?agentsForLog=all&impForLog=all&onlyErrors=no"); 
 			
 			
@@ -78,7 +84,7 @@ $(document).ready(function(){
 <div id="logForm">
 	
 	<div class="row">
-		
+		<!-- the filter --> 
 		<div class="well">
 		
 			agent:<select  name= "agentsForLog" id="agentsForLog" class="changeTable">
@@ -102,3 +108,8 @@ $(document).ready(function(){
 
 <div id="logTableContent"> 
 </div>  
+
+<?php
+	//close connection 
+	db_close_conn($con);
+?>

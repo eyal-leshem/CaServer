@@ -61,6 +61,10 @@
 <?php	}
 ?> 
 	
+<?php
+	//close connection 
+	db_close_conn($con);
+?>
 
 	
 

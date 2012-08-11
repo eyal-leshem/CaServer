@@ -51,3 +51,30 @@ Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
 Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
 Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
 Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+
+-------------------------------------------------
+full stack trace: full stack trace: full stack trace: exceptions.AgentServiceException: implemtor id need to b uniqe , id-yakovJavaProgram already exist
+Implemtor.PluginInstanceFactory.encrypteAndSaveParms(PluginInstanceFactory.java:246)
+Implemtor.PluginInstanceFactory.installNewImplementorInstance(PluginInstanceFactory.java:201)
+Implemtor.PluginManger.addNewInstance(PluginManger.java:185)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+exceptions.AgentServiceException: can not save and encrypte the pameters of this instance
+Implemtor.PluginInstanceFactory.installNewImplementorInstance(PluginInstanceFactory.java:203)
+Implemtor.PluginManger.addNewInstance(PluginManger.java:185)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)
+exceptions.AgentServiceException: can not install new instance of this implemntor implemntor
+Implemtor.PluginManger.addNewInstance(PluginManger.java:187)
+Commands.newInstanceCommand.excute(newInstanceCommand.java:59)
+Implemtor.ImplementorManager.commitTask(ImplementorManager.java:70)
+Manager.Manager.main(Manager.java:77)

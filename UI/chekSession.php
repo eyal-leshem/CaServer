@@ -1,10 +1,12 @@
 
 <?php
 
-
+/*
+ check if this user have sacure session with the sites 
+*/
 function chekSession(){
 
-	
+	//start seesion 
 	session_start();
 	
 	//check this is authenticate user 

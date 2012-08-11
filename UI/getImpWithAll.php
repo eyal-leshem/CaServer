@@ -1,11 +1,18 @@
 <?php
+/**
+ return combo box of all the implemtors 
+ and also add the option all 
+*/
+
+
+//include the connector to the database 
 chdir (".."); 
 include_once 'dbConnector.php';
 $con=db_Open_conn(); 
 chdir ("UI");
 
+//get all the option from sql answer 
 function getOptions($ans){
-
 	
 	$next=mysql_fetch_array($ans);
 	while($next){
@@ -15,14 +22,17 @@ function getOptions($ans){
 
 }
 
+//get the id of the agents 
 $agentId=$_GET["agentId"]; 
 
-
-$query= " SELECT  implementorId  FROM  implementors WHERE agentId='$agentId'" ;
-
+//add "all" option 
 echo "<option value=\"all\">all</option>";
- getOptions(mysql_query($query));	
 
+//print all others options 
+$query= " SELECT  implementorId  FROM  implementors WHERE agentId='$agentId'" ;
+getOptions(mysql_query($query));	
+
+//close connection 
 db_close_conn($con);
  
 

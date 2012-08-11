@@ -1,4 +1,11 @@
 <?php
+
+/*
+ get all the implementors with this alogrithem 
+*/
+
+
+//open connection to the daata base 
 chdir (".."); 
 include 'dbConnector.php';
 $con=db_Open_conn(); 
@@ -13,26 +20,23 @@ function getImplementors($ans, $algForShare, $agentId){
 	
 	while($next)
 	{
-		$imp = $next[0];
+		//get the next implementor 
+		$imp = $next[0];				
 		
-		
-		
-		$queryAlgs =  "SELECT algorithm FROM algorithms WHERE agentId='$agentId' AND implementorId='$imp'" ;
-		
-		echo $queryAlgs."<br>"; 
-		echo $con."<BR>"; 
-		
+		//get all the alogrithem of this implemntor
+		$queryAlgs =  "SELECT algorithm FROM algorithms WHERE agentId='$agentId' AND implementorId='$imp'" ;	 	
 		$algsAns = mysql_query($queryAlgs);
-		
-		$nextAlg = mysql_fetch_array($algsAns);
-		
-		
-		//the only authorized type form key pair is X.509 
+								
+		//the only authorized type of key pair is X.509 
 		if($algForShare!="X.509"){
 			
+			//start to rin over all the algorithems 
+			$nextAlg = mysql_fetch_array($algsAns);
+		
 			//check if this implementor has the required algorithm
 			while($nextAlg)
 			{
+				//mean it have the required algorithem 
 				if(strcmp($nextAlg[0], $algForShare) == 0)
 				{
 					//and this implemtor and continue 
@@ -52,12 +56,12 @@ function getImplementors($ans, $algForShare, $agentId){
 
 }
 
+//get the agentName and the alorithem he need to shar
 $agentId=$_GET["agentId"];
 $algForShare=$_GET["algForShare"]; 
 
+//get all the relevant implementors 
 $query= " SELECT implementorId FROM implementors WHERE agentId='$agentId'" ;
-
-
 getImplementors(mysql_query($query), $algForShare, $agentId);	
 
 db_close_conn($con);

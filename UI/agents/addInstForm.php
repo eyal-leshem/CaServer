@@ -1,3 +1,5 @@
+<!-- a form to add new instance of implementor --> 
+
 <?php
 chdir (".."); 
 chdir (".."); 
@@ -10,13 +12,14 @@ include "chekSession.php";
 if(!chekSession())
 	exit("permission denied");
 	
+	//print all the agenta oprtions 
 	function getAgentsOpt(){
 		$query= " SELECT  agentId FROM agents" ; 
 		return getOptions(mysql_query($query)); 
 	}
-		
-	function getOptions($ans){
 
+	//print mysql answer to combobox  
+	function getOptions($ans){
 		$next=mysql_fetch_array($ans);
 		while($next){
 			echo "<option value=\"$next[0]\">$next[0]</option>"; 
@@ -30,6 +33,7 @@ if(!chekSession())
 
 ?>
 <script type="text/javascript">
+//load the plugins that relvant to the implemntors 
 $(document).ready(function(){
 
 							$("#agentSelect0").change(function() {
@@ -48,17 +52,19 @@ $(document).ready(function(){
 
  <form method="post" id="newInstForm"  action="agents/genInstTask.php" class="well" enctype="multipart/form-data">
 		
-		<!-- agent fot commiting the task -->
-		Agent for Create key : <select  name= "agentIdForShare" id="agentSelect0">
+		<!-- agent to add him the instance -->
+		Agent name : <select  name= "agentIdForShare" id="agentSelect0">
 			<option value=""></option>
 			<?php getAgentsOpt() ?>
 		</select>
 		<BR>
-		<!-- the implmentor that need to cmmit the task commit this task -->
+		
+		<!--choose the relavat plugin for the new isntance  -->
 		plugin : <select  name= "plugin" id="pluginSelect">						
 					</select> 			
 		<BR/>
 		
+		<!-- configuration file --> 
 		<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
 		cofiguration file:  <input name="uploadedfile" type="file" /><br />
 		<input type="submit" value="create intsance" />

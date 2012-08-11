@@ -1,14 +1,14 @@
+<!-- php file that create the form of change agent configuration  --> 
+
 <?php
 
 
-
+	//get the configration of one agent from the database 
 	function getConf($agentId){
 		$query="SELECT agentConf FROM agentsconf where agentId = '$agentId'"; 
 		$ans=mysql_query($query);
-		$asArr=mysql_fetch_array($ans); 
-		
-		return $asArr[0]; 
-		
+		$asArr=mysql_fetch_array($ans); 		
+		return $asArr[0];		
 	}
 
 	//check that we are in safe session 
@@ -17,11 +17,13 @@
 	if(!chekSession())
 		exit("<BR><BR> permission denied<BR><BR>try login agin in <a href=\"login.php\"> login page </a>");
 		
+	//open connction with the data base 
 	chdir (".."); 
 	require_once("dbConnector.php");
 	$con=db_Open_conn(); 
 	chdir ("UI");
 
+	//get the conf of the given agent
 	$agentId=$_GET["agentId"];
 	$conf=json_decode(getConf($agentId),true);  			
 	
@@ -29,9 +31,7 @@
 
 <script type="text/javascript">
 
-	
-
-
+	//load the previous data into the form 
 	$(document).ready(function(){
 		
 		$('[name=sleepTime]').val('<?php echo $conf["sleepTime"]; ?>'); 	
@@ -72,7 +72,7 @@
 	</div> 
 
 	<div class="span6">
-  
+		<!-- hte configration now -->
 		<p id="ImpNowConf">
 			now agents conf: <BR>
 			
@@ -93,6 +93,7 @@
 	
 	
 	<div class="span6"> 
+	<!-- form to change the configuration --> 
 		<p id="headNewAgentConf">
 			change server configuration:   <BR>
 		</p>
@@ -110,6 +111,12 @@
 
 <div class="row"> 
 <div id="confAgentAns"></div>
+
+<?php 
 	
+	//close connection 
+	db_close_conn($con);
+
+?>
 	
 	

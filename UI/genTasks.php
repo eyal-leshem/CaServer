@@ -1,4 +1,6 @@
 <?php
+
+//include the database connector
 chdir (".."); 
 include 'dbConnector.php';
 $con=db_Open_conn(); 
@@ -9,6 +11,7 @@ include "chekSession.php";
 if(!chekSession())
 	exit("permission denied");
 
+//get an option for all agnets 
 function getAgentsOpt(){
 	$query= " SELECT  agentId FROM agents" ; 
 	return getOptions(mysql_query($query)); 
@@ -16,7 +19,8 @@ function getAgentsOpt(){
 
 
 
-
+//get optin for combobox 
+//from an sql array
 function getOptions($ans){
 
 	
@@ -46,8 +50,7 @@ $(document).ready(function(){
 			 
 			
 			$("#agentSelect1").change(function() {
-									agentName=$("#agentSelect1").val();
-									//$("#impSelect1").load("getImp.php?agentId="+agentName) ; 
+									agentName=$("#agentSelect1").val();									
 									algName=$("#alg").val();
 									$("#impSelect1").load("checkAlgForShare.php?agentId="+agentName+"&algForShare="+algName) ;
 							});
@@ -55,7 +58,6 @@ $(document).ready(function(){
 							
 			$("#agentSelect2").change(function() {
 									agentName=$("#agentSelect2").val();
-									//$("#impSelect2").load("getImp.php?agentId="+agentName) ; 
 									algName=$("#alg").val();
 									$("#impSelect2").load("checkAlgForShare.php?agentId="+agentName+"&algForShare="+algName) ;
 							});
@@ -63,7 +65,6 @@ $(document).ready(function(){
 		
 			$("#agentSelect3").change(function() {
 									agentName=$("#agentSelect3").val();
-									//$("#impSelect3").load("getImp.php?agentId="+agentName) ; 
 									algName=$("#alg").val();
 									$("#impSelect3").load("checkAlgForShare.php?agentId="+agentName+"&algForShare="+algName) ;
 							});
@@ -71,8 +72,6 @@ $(document).ready(function(){
 			
 			$("#agentSelect4").change(function() {
 									agentName=$("#agentSelect4").val();
-									
-									//$("#impSelect4").load("getImp.php?agentId="+agentName) ; 
 									algName=$("#alg").val();
 									$("#impSelect4").load("checkAlgForShare.php?agentId="+agentName+"&algForShare="+algName) ; 
 							});
@@ -81,7 +80,9 @@ $(document).ready(function(){
 			$("#taskKind").change(function() {
 									kind=$("#taskKind").val();
 									$("#alg").hide();
-									//alert("imp selected"+agentName+" "+implementorId);
+									
+									//the remove certificate and add need
+									// different form  dtructure
 									if("remove certifcate"==kind  || "add to crl"==kind){
 										$("#restOfForm").hide(); 
 										$("#serialNumberForm").show();
@@ -196,6 +197,7 @@ $(document).ready(function(){
 				<?php getAgentsOpt() ?>
 			</select>
 			<BR>
+			
 			<!-- the implmentor that need to cmmit the task commit this task -->
 			implementor : <select  name= "imp2" id="impSelect2">						
 						</select> 	
@@ -208,6 +210,7 @@ $(document).ready(function(){
 				<?php getAgentsOpt() ?>
 			</select>
 			<BR>
+			
 			<!-- the implmentor that need to cmmit the task commit this task -->
 			implementor : <select  name= "imp3" id="impSelect3">						
 						</select> 	
@@ -221,6 +224,7 @@ $(document).ready(function(){
 				<?php getAgentsOpt() ?>
 			</select>
 			<BR>
+			
 			<!-- the implmentor that need to cmmit the task commit this task -->
 			implementor : <select  name= "imp4" id="impSelect4">						
 						</select> 	
@@ -228,7 +232,7 @@ $(document).ready(function(){
 			<BR/>
 		<BR/> 
 		</div>
-		
+		<!-- the part of the from that relvant to remove certificate  -->
 		<div id="serialNumberForm">
 			serial number : <input type="text" name="serialNumber" />
 		
@@ -237,15 +241,9 @@ $(document).ready(function(){
 		<input type="submit" name="submit"/>
 		
 		
-		
-		
-  
  
 </form> 
-</div>
-	<div id="impres">
-	<div>
-</div> 
+
 
 
 <?php

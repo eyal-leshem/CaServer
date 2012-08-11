@@ -22,7 +22,7 @@ function db_Open_conn(){
 	$dbPassword = loadConf("password"); 
 	
 	//open the conection and select the database 
-	$con=mysql_connect($dbAdd, $dbUserName, "a10097");
+	$con=mysql_connect($dbAdd, $dbUserName, $dbPassword);
 	mysql_select_db(loadConf("dbName"),$con);
 	
 	//go back to our dir
